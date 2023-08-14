@@ -2,26 +2,131 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@import "./slider.css";
+
+body {
+  background-color: #000;
+  color: #aaa;
+  font-family: _Regular;
+  font-size: 1.5rem;
+  padding: 1rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@font-face {
+  font-family: _Regular;
+  src: url(./IBMPlexMono-Regular.ttf);
+}
+
+button {
+  transition-duration: 0.4s;
+}
+
+button:hover {
+  color: #fff;
+  /* border-top: 2px solid #fff; */
+  border-color: #fff;
+}
+
+.overide {
+  height: auto;
+}
+
+.overide:hover {
+  color: #fff;
+  height: auto;
+  /* border-left: 2px solid #000; */
+}
+
+a {
+  transition-duration: 0.4s;
+  border-left: 2px solid #000;
+  height: 1rem;
+}
+
+a:hover {
+  color: #fff;
+  /* border-left: 2px solid #fff; */
+}
+
+.borderr{
+  border: 2px solid red;
+}
+
+.player{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.burger{
+  height: 50px;
+  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; 
+  border-radius: 50%;
+  font-size: 1rem;
+}
+
+.typewriter {
+  animation: pulse 10s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .1;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+.textInput{
+  background-color: black;
+  color: #aaa;
+  margin: 0.5rem;
+  padding-bottom: 1.5rem;
+  padding-top: 1rem;
+  font-size: 1.5rem;;
+  border-width: 0px 0px 1px 0px; /* top right bottom left */
+  border-style: none none groove none;
+  border-color: #aaa ;
+  height : 25px; 
+}
+
+.textInput:hover{
+  color: white;
+}
+
+.textInput:focus{
+  color: white;
+  outline:none;
+  border-color: white;
+}
+
+.textArea{
+  width : 200px;
+  height : 80px;
+  padding : 0.2rem 0.6rem;
+  background-color: black;
+  color: #aaa;
+  box-sizing : border-box;
+  border : 1px solid #aaa;
+  border-style : solid none none solid;
+  font-size : 1.5rem;
+  resize: none; 
+}
+.textArea:focus{
+  outline: none;
+}
+
+.profile-thumbnail {
+  width: 100px; /* Set the desired width */
+  height: 100px; /* Set the desired height */
+  border-radius: 50%; /* Make the image round */
+  object-fit: contain; /* Maintain aspect ratio and fill the container */
+  object-position: center; /* Center the image within the container */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
