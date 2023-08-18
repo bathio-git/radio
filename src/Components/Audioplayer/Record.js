@@ -21,7 +21,7 @@ export default function Record() {
             setShowSave('flex flex-col fixed top-[50%] left-[40%] transform translate-x-[-50%] translate-y-[-50%]') ,
             setColor('#aa0000')
         ):(
-            setShowSave('hidden'),
+            setShowSave('invisible'),
             setColor('#aaa'),
             setRecordedChunks([])
         )
@@ -68,7 +68,7 @@ export default function Record() {
             >
                 <RedRadioButtonCheckedOutlinedIcon />
             </button>
-            <div className={'hidden'}>
+            <div className={showSave}>
                 <textarea 
                     className="textArea w-[200px] h-[80px] md:w-[300px] md:h-[120px]"
                     id={'textArea'} 
