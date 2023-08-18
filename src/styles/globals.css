@@ -130,3 +130,16 @@ a:hover {
   object-position: center; /* Center the image within the container */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
 }
+
+.displayNone {
+  display: none;
+}
+
+.showSave {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 40%;
+  transform: translateX(-50%) translateY(-50%);
+}

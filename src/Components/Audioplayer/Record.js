@@ -15,26 +15,13 @@ export default function Record() {
     
     const RedRadioButtonCheckedOutlinedIcon = styled(RadioButtonCheckedOutlinedIcon)` color: ${xo};`;
 
-    const stylee = {
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'fixed',
-        top: '50%',
-        left: '40%',
-        transform: 'translateX(-50%) translateY(-50%)',
-    };
-
-    const displayNone = {
-        display : 'none'
-    }
-
     useEffect(() => {
         isRecording 
         ? (
-            setShowSave(stylee) ,
+            setShowSave('showSave') ,
             setColor('#aa0000')
         ):(
-            setShowSave(displayNone),
+            setShowSave('displayNone'),
             setColor('#aaa'),
             setRecordedChunks([])
         )
@@ -81,7 +68,7 @@ export default function Record() {
             >
                 <RedRadioButtonCheckedOutlinedIcon />
             </button>
-            <div style={showSave}>
+            <div className={showSave}>
                 <textarea 
                     className="textArea w-[200px] h-[80px] md:w-[300px] md:h-[120px]"
                     id={'textArea'} 
