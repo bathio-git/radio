@@ -68,7 +68,7 @@ export default function Record() {
             >
                 <RedRadioButtonCheckedOutlinedIcon />
             </button>
-            <div className={showSave}>
+            <div className={'hidden'}>
                 <textarea 
                     className="textArea w-[200px] h-[80px] md:w-[300px] md:h-[120px]"
                     id={'textArea'} 
