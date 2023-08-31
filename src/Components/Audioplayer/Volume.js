@@ -20,7 +20,7 @@ export default function Volume () {
     }, [volume])
 
     return (
-        <div className=" mr-[0px] fixed right-0 top-0 h-[100vh] flex flex-col align-middle justify-between  w-[350] text-[#AAA] z-20 bg-[#00000080] ">
+        <div className=" mr-[0px] fixed right-0 top-0 h-[100vh] flex flex-col align-middle justify-between  w-[3] text-[#AAA] z-20 bg-[#00000080] ">
             <button
                 className="  h-[45vh]   "
                 onClick={

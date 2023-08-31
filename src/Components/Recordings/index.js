@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState} from "react"
-import { _data } from "../../Context/Context"
+import { useEffect, useState, useCallback} from "react"
 import { v4 } from "uuid";
-import PlayARecord from "../PlayARecord"
+import PlayARecord from "./PlayARecord"
 import LoadingAnimation from "../LoadingAnimation";
+
 
 export default function Recordings({ edits, user }) {
 
-    const { setSourceAudio } = useContext(_data)
     const [ records, setRecords ] = useState(null)
 
     useEffect(() => {
@@ -14,14 +13,15 @@ export default function Recordings({ edits, user }) {
         if (user) {
             fetch(`/api/getMixesOfUser?user=${user.username}`)
             .then(res => res.json())
-            .then(data => setRecords(data))
-        } else
-        fetch(`/api/getAllMixes`)
+            .then(data => setRecords(data.reverse()))
+        } else{
+            fetch(`/api/getAllMixes`)
             .then(res => res.json())
-            .then(data => {setRecords(data)})
+            .then(data => setRecords(data.reverse()))
+        }
     }, [])
 
-    function handleDelete (recordId) {
+    function onDelete (recordId) {
 
         const updatedRecords = records.filter(record => record._id !== recordId);
         setRecords(updatedRecords);
@@ -32,11 +32,10 @@ export default function Recordings({ edits, user }) {
         <LoadingAnimation />
     ) : (
         records.map((record, index) =>
-            <div className="mx-[1.75rem] text-[1rem] " key={v4()}>
+            <div className="mx-[1.75rem] mb-8 text-[1rem] " key={v4()}>
                 <PlayARecord 
                     record={record}
-                    setSourceAudio={setSourceAudio}
-                    onDelete={() => handleDelete(record._id)}
+                    onDelete={() => onDelete(record._id)}
                     edits={edits}
                 />
                 <br />

@@ -23,7 +23,7 @@
     position: absolute;
     transition: 0.2s;
     box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-
+    
     border-width: 2px;
     border-style: none none solid none;
     border-color: #aaa;
@@ -51,6 +51,7 @@
     justify-content: center;
     width: 50%;
     height: 100%;
+    font-size: 1rem;
 }
 .react-switch-labels span:first-child {
     left: 0;

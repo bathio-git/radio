@@ -10,7 +10,6 @@ export default function Context({ children }) {
     const [ sourceNode, setSourceNode ] = useState(null)
     const [ mixes, setMixes ] = useState(null)
 
-
     const [currentUser, setCurrentUser] = useState(null);
 
 

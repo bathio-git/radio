@@ -25,10 +25,12 @@ export default async function deleteMix(req, res) {
   try {
     await client.connect();
     const db = client.db("databaseName")
-    const collection = db.collection("mixes")
+    const metadataCollection = db.collection("mixesMetadata");
+    const base64Collection = db.collection("mixesBase64");
     console.log('delete', mixId)
-    // use new ObjectId(mixId) instead of ObjectId(mixId)
-    const result = await collection.deleteOne({ _id: new ObjectId(mixId) })
+
+    const result = await metadataCollection.deleteOne({ _id: new ObjectId(mixId) })
+    const result2 = await base64Collection.deleteOne({ _id: new ObjectId(mixId) })
 
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: 'No mix found with this id' });

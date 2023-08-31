@@ -5,6 +5,8 @@ import Audioplayer from "@/Components/Audioplayer";
 import Burger from "@/Components/Hamburger/Hamburger";
 import PayPal from "@/Components/PayPal";
 import EmailForm from "@/Components/EmailForm";
+import Test from "@/Components/Test.js";
+
 
 
 export default function Home() {

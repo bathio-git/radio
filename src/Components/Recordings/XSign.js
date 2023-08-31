@@ -2,12 +2,12 @@ import axios from 'axios';
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 export default function XSign({ mixId, onDelete }) {
-
-  const deleteMix = async () => {
+  
+  async function deleteMix() {
     try {
       const response = await axios.post('/api/deleteMix', { mixId });
       if (response.status === 200) {
-        onDelete()
+        onDelete(mixId)
       } else {
         console.error(`Failed to delete mix: ${response.data.error}`);
       }
@@ -17,12 +17,11 @@ export default function XSign({ mixId, onDelete }) {
   }
 
   return (
-    <div 
+    <span 
       onClick={deleteMix}
       className="cursor-pointer mx-12 my-2 "
-    
     >
       <DeleteForeverOutlinedIcon />
-    </div>
+    </span>
   );
 }

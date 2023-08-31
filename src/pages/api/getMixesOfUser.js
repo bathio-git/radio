@@ -8,14 +8,9 @@ export default async function getMixesOfUser(req, res) {
         await client.connect();
         const user = req.query.user;
         const db = client.db("databaseName");
-        const collection = db.collection("mixes");
+        const collection = db.collection("mixesMetadata");
         const allMixes = await collection.find({username: user }).toArray();
-
-        // sort by date descending
-        allMixes.sort((a, b) => {
-            return new Date(b.date) - new Date(a.date);
-        });
-
+        
         res.status(200).json(allMixes);
     } catch (error) {
         console.error(error);

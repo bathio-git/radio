@@ -68,7 +68,7 @@ export default async function newUser(req, res) {
 
             // create token
             const token = jwt.sign({ username: obj.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            let verificationLink = `http://localhost:3000/verify?token=${token}`;
+            let verificationLink = `${process.env.NEXT_PUBLIC_API_URL}verify?token=${token}`;
             let text = `Hey mate, here is your verification link: ${verificationLink}. If you like the app, please consider donating. Have fun!`;
 
             let mailOptions = {

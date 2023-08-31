@@ -15,6 +15,8 @@ export default async function save({ xo, setColor, setIsRecording, recordedChunk
 
         const duration = formatTime(audioBuffer.duration);
         console.log('Recorded duration:', duration);
+        document.getElementById('message').style.display = 'block';
+        document.getElementById('message').textContent = 'Saving... May take a few seconds';
     
         const base64 = await blobToBase64(blob);
         const text = document.getElementById('textArea').value;

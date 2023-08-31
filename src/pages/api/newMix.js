@@ -1,4 +1,6 @@
 import mongoClient from "@/lib/mongoClient";
+const { ObjectId } = require('mongodb');
+
 
 export const config = {
   api: {
@@ -20,9 +22,13 @@ export default async function newMix(req, res) {
   try {
     await client.connect();
     const db = client.db("databaseName")
-    const collection = db.collection("mixes")
+    const metadataCollection = db.collection("mixesMetadata");
+    const base64Collection = db.collection("mixesBase64");
+    const id = new ObjectId();
 
-    await collection.insertOne({ base64, text, date, username, email, source, duration })
+    await metadataCollection.insertOne({ _id: id, text, date, username, email, source, duration });
+    await base64Collection.insertOne({ _id: id, base64 });
+
     res.status(200).json({ message: 'New mix created successfully' })
   } 
   catch (err) {
