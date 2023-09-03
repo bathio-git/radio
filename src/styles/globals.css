@@ -147,6 +147,10 @@ a:hover {
   z-index: 200;
 }
 
+.zIndex3 {
+  z-index: 500;
+}
+
 .transparent {
   background-color: rgba(0, 0, 0, 0);
 }

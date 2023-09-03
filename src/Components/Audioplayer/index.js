@@ -36,16 +36,16 @@ export default function Audioplayer ({size}) {
     //flex ml-[1rem] w-full justify-between
     return(
         <>
-            <div className="flex ml-0 lg:ml-[1rem] w-full justify-between">
+            <div className="flex ml-0 lg:ml-[1rem] zIndex3 w-full justify-between">
                 {/* <VolumeMobile /> */}
                 <Record />
                 <Player />
                 <Next context={context}/>
-                {
-                    size && size.width > 640 && <Volume />
-                }
-                <Spectro size={size} />
             </div>
+            <Spectro size={size} />
+            {
+                size && size.width > 640 && <Volume />
+            }
         </>
     )
 }
