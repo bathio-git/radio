@@ -87,6 +87,7 @@ a:hover {
   border-style: none none solid none;
   border-color: #aaa ;
   height : 25px; 
+  border-radius: 0px;
 }
 
 .textInput:hover{
