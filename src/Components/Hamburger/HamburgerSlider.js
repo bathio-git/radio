@@ -5,9 +5,8 @@ export default function HamburgerSlider ({ setLive, live }) {
     }
 
     return (
-        <div className="mt-0 lg:mt-4 flex ml-[10vw] md:ml-[20vw] transparent">
+        <div className="mt-0 lg:mt-4 flex ml-[10vw] md:ml-[20vw] transparent relative">
             <label
-                style={{ background: 'rgba(255, 0, 0, 0)'}}
                 className=" w-[15rem] md:w-[30rem] h-[2.5rem] react-switch">
                 <input
                     className="react-switch-checkbox"

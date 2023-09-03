@@ -84,7 +84,7 @@ a:hover {
   padding-top: 1rem;
   font-size: 1.5rem;;
   border-width: 0px 0px 1px 0px; /* top right bottom left */
-  border-style: none none groove none;
+  border-style: none none solid none;
   border-color: #aaa ;
   height : 25px; 
 }
