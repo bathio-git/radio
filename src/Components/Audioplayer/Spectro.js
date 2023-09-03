@@ -86,6 +86,7 @@ export default function  Spectro ({size}) {
                 left: '100vw',
                 transform: `rotate(90deg)`,
                 transformOrigin: `top left`,
+                zIndex: 1
             }}
         >
                 <canvas ></canvas>
