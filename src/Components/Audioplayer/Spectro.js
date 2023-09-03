@@ -74,8 +74,8 @@ export default function  Spectro () {
 
     return(
         <div 
-            className={`fixed  `}
             style={{
+                position: `absolute`,
                 top: `0`, 
                 left: '100vw',
                 transform: `rotate(90deg)`,

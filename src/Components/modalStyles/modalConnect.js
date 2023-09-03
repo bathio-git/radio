@@ -6,8 +6,8 @@ const modalConnect = {
     content: {
         position: `asbolute`,
         border: `none`,
-        background: '#000',
-        width: '70vw',
+        background: 'rgba(0,0,0,0.0)',
+        width: '90vw',
         height: 'auto',
         overflow: `auto `,
         WebkitOverflowScrolling: `touch`,

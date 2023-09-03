@@ -19,7 +19,7 @@ export default function XSign({ mixId, onDelete }) {
   return (
     <span 
       onClick={deleteMix}
-      className="cursor-pointer mx-12 my-2 "
+      className="cursor-pointer mx-16 "
     >
       <DeleteForeverOutlinedIcon />
     </span>

@@ -14,7 +14,7 @@ export default function UserProfile({ setRadioList, currentUser}) {
 
     return (
         <>
-            <div className="mx-[0.75rem] text-[1.5rem] flex items-center h-[50px]" >
+            <div className="mx-[0.75rem] text-[1.5rem] flex items-center h-[15vh] " >
 
                 {
                     showMenu ?(
@@ -49,12 +49,19 @@ export default function UserProfile({ setRadioList, currentUser}) {
                     </button>
                     
                     {   
-                        showMenu &&
+                        showMenu ?(
                         <a 
                             className="text-[1rem] mt-4"
                             href={`mailto:${currentUser.email}`}>
                         {currentUser.email}
                         </a>
+                        ):(
+                            <a 
+                            className="text-[1rem] mt-4"
+                            href={`mailto:${currentUser.email}`}>
+                                &nbsp;
+                            </a>
+                        )
                     }
                 </div>
             </div>
@@ -68,7 +75,7 @@ export default function UserProfile({ setRadioList, currentUser}) {
                 htmlOpenClassName="ReactModal__Html--open" 
                 overlayClassName="header__overlay zIndex" 
                 >
-                <nav className={`flex flex-col text-[2.815rem]`}>
+                <nav className={`flex flex-col text-[2.815rem] mx-0 md:mx-16`}>
                     <UserProfileContent setRadioList={setRadioList}/>
                 </nav>
             </Modal>

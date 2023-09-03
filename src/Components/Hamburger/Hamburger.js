@@ -45,7 +45,7 @@ export default function Burger() {
                 htmlOpenClassName="ReactModal__Html--open" 
                 overlayClassName="header__overlay zIndex" 
                 >
-                <nav className={`flex flex-col md:ml-[2rem]`}>
+                <nav className={`md:ml-[2rem] zIndex`}>
                     { currentUser && currentUser !== {} ?( 
                             <UserProfile setRadioList={setRadioList} currentUser={currentUser} />
                         ):( 
@@ -56,7 +56,7 @@ export default function Burger() {
                         showRadioList &&
                         <>
                             <HamburgerSlider setLive={setLive} live={live} />
-                            <div className="mt-[6rem]">
+                            <div className="mt-[6rem] mx-0 md:mx-16">
                                 {
                                     live === false ?( 
                                         <RadioList setClose={setClose} />

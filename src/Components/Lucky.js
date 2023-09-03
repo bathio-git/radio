@@ -12,7 +12,7 @@ export default function Lucky() {
     ):(
         <button
             onClick={() => shuffle({context})}
-            className="m-[1rem]"
+            className="mx-[1rem]"
         >
             fortune cookies
         </button>

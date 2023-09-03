@@ -32,7 +32,7 @@ export default function Recordings({ edits, user }) {
         <LoadingAnimation />
     ) : (
         records.map((record, index) =>
-            <div className="mx-[1.75rem] mb-8 text-[1rem] " key={v4()}>
+            <div className="mb-12 text-[1rem] m-[1.5rem]" key={v4()}>
                 <PlayARecord 
                     record={record}
                     onDelete={() => onDelete(record._id)}

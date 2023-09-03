@@ -1,20 +1,19 @@
 import blobToBase64  from './blobToBase64.js';
 import formatTime from './formatTime.js';
 
-export default async function save({ xo, setColor, setIsRecording, recordedChunks, currentUser, sourceAudio}) {
+export default async function save({ xo, setColor, setIsRecording, recordedChunks, currentUser, sourceAudio, startTime}) {
 
     setIsRecording(false);
+
+    // get the duration of the recording
+    const duration = formatTime((Date.now() - startTime) / 1000);
+    console.log(duration);
+
     setColor(xo === '#aaa' ? '#aa0000' : '#aaa');
     const blob = new Blob(recordedChunks, { type: 'audio/ogg; codecs=opus' });
 
     try {
-        const audioContext = new AudioContext();
-        const arrayBuffer = await blob.arrayBuffer();
-        const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-        audioContext.close();
 
-        const duration = formatTime(audioBuffer.duration);
-        console.log('Recorded duration:', duration);
         document.getElementById('message').style.display = 'block';
         document.getElementById('message').textContent = 'Saving... May take a few seconds';
     
@@ -44,13 +43,15 @@ export default async function save({ xo, setColor, setIsRecording, recordedChunk
         }
         else {
             document.getElementById('message').textContent = 'Something went wrong';
-
-            setTimeout(() => {
-                document.getElementById('message').style.display = 'none';
+        }
+        setTimeout(() => {
+            document.getElementById('message').style.display = 'none';
         }, 5000);
-    }
-        } catch (error) {
+
+        
+
+    } catch (error) {
         // Handle any errors that occurred during the process.
         console.error('Error:', error);
-        }
+    }
 }

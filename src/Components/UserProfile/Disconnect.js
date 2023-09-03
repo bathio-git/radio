@@ -17,7 +17,7 @@ export default function Disconnect({ setRadioList, currentUser }) {
         {
             currentUser ? (
                 <button
-                    className="rounded-full h-[2.5rem] w-[2.5rem] border-[2px] border-[#aaa]  flex justify-center items-center mt-[0.25rem] ml-[2rem]"
+                    className="rounded-full h-[2.5rem] w-[2.5rem] border-[2px] border-[#aaa] flex justify-center items-center mt-[0.25rem] mx-8"
                     onClick={() => {
                         context.setCurrentUser(null);
                         setRadioList(true);

@@ -14,15 +14,15 @@ export default function Volume () {
             let audio = document.getElementById("audioSource")
             setVolumeText(audio.volume.toString().substring(0,4))
 
-            let x = audio.volume > 0.9 ? ' ' : '>'
+            let x = audio.volume > 0.9 ? <p>&nbsp;</p>: <p>&#9650;</p>
             setShowUp(x)
         }
     }, [volume])
     //bg-[#00000080]
     return (
-        <div className="  mr-[0px] fixed right-0 top-0 h-[100vh] flex flex-col align-middle justify-between text-[#AAA] z-20  ">
+        <div className="relative flex flex-col justify-center z-20 h-32">
             <button
-                className=" transparent h-[45vh]   "
+                className=" w-[5ch]"
                 onClick={
                     ()=> volumeUp(setVolume)
                 }
@@ -31,18 +31,35 @@ export default function Volume () {
                 {showUp}
             </button>
 
-            <p className=" text-[1.25rem] flex justify-center text-[#AAA]  w-[350px] transparent" >
+            <p className=" text-[1.25rem] flex justify-center transparent" >
                 {volumeText}
             </p>
             <button
                 id="volumeDown"
-                className="mb-8  h-[45vh] transparent"
+                className="transparent"
                 onClick={
                     ()=> volumeDown(setVolume)
                 }
             >
-                {'<'}
+                &#9660;
             </button>
         </div>
     )
 }
+/* 
+
+<div>
+                    <button id="volumeUp"> 
+                        &#9650;
+                    </button>
+                
+                    <p id="volume" style="width: 5ch;"> 
+                        &nbsp;
+                    </p>
+                    
+                    <button 
+                        id="uniqueid"
+                        style="background-color: rgba(0, 0, 0, 0);"
+                        > &#9660;
+                    </button>   
+                </div> */

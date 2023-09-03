@@ -18,18 +18,18 @@ export default function RecordInfos({ record, equal }) {
     }, []);
 
     return (
-        <>
+        <div className="ml-10 mb-2 ">
             {
                 equal() &&
                 <ProgressBar record={record} />
             }
             <p>
-                &nbsp;&nbsp;&nbsp;&nbsp;recorded {formattedDate(record.date)} on
+                recorded {formattedDate(record.date)} on
                 <Link href={url} target="_blank">
                 &nbsp;{record.source}
                 </Link>{" "}
-                by {record.username}
+                <span className="whitespace-nowrap">by {record.username}</span>
             </p>
-        </>
+        </div>
     );
 }

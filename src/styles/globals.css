@@ -9,7 +9,6 @@ body {
   color: #aaa;
   font-family: _Regular;
   font-size: 1.5rem;
-  padding: 1rem;
 }
 
 @font-face {
@@ -50,12 +49,6 @@ a:hover {
 
 .borderr{
   border: 2px solid red;
-}
-
-.player{
-  display: flex;
-  align-items: center; 
-  justify-content: center;
 }
 
 .burger{
@@ -123,8 +116,6 @@ a:hover {
 }
 
 .profile-thumbnail {
-  width: 100px; /* Set the desired width */
-  height: 100px; /* Set the desired height */
   border-radius: 50%; /* Make the image round */
   object-fit: contain; /* Maintain aspect ratio and fill the container */
   object-position: center; /* Center the image within the container */
@@ -142,4 +133,20 @@ a:hover {
   top: 50%;
   left: 40%;
   transform: translateX(-50%) translateY(-50%);
+}
+
+.blackborder {
+  border: 2px solid black;
+}
+
+.zIndex {
+  z-index: 100;
+}
+
+.zIndex2 {
+  z-index: 200;
+}
+
+.transparent {
+  background-color: rgba(0, 0, 0, 0);
 }

@@ -3,7 +3,7 @@ import Modal from 'react-modal';
 import { imageModalStyles } from "../modalStyles/imageModalStyles";
 import { _data } from "@/Context/Context";
 import addImage from '../../lib/addImage';
-
+import Image from "next/image";
 
 export default function ImageModale({ image, setSelectedImage, classe }) {
 
@@ -34,7 +34,7 @@ export default function ImageModale({ image, setSelectedImage, classe }) {
                         </div>
                     ):(
                         <div className="mr-3">
-                            <img src={image} alt="image" className={classe ? classe : "profile-thumbnail"} />
+                            <Image src={image} width={65} height={65} className='rounded-full object-contain object-center shadow-sm' alt="image"  />
                     </div>
                     )
                 }

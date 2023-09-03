@@ -12,6 +12,7 @@ export default function Record() {
     const [isRecording, setIsRecording] = useState(false);
     const [recorder, setRecorder] = useState(null);
     const [recordedChunks, setRecordedChunks] = useState([]);
+    const [startTime, setStartTime] = useState(null);
     
     const RedRadioButtonCheckedOutlinedIcon = styled(RadioButtonCheckedOutlinedIcon)` color: ${xo};`;
 
@@ -42,6 +43,10 @@ export default function Record() {
         
         if (isRecording && recorder) {
             recorder.start(1000);
+
+            // save the start time of the recording
+            setStartTime(Date.now());
+
             recorder.ondataavailable = async (e) => {
                 /* console.log(e.data) */
                 setRecordedChunks(prevChunks => [...prevChunks, e.data]);
@@ -80,7 +85,7 @@ export default function Record() {
                     onClick={
                         () => {
                                 save({ 
-                                    xo, setColor, setIsRecording, recordedChunks, currentUser, sourceAudio 
+                                    xo, setColor, setIsRecording, recordedChunks, currentUser, sourceAudio, startTime
                             })
                         }
                     }

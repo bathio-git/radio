@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import Player from "./Player"
 import Volume from "./Volume"
+import VolumeMobile from "./VolumeMobile.js"
 import Next from "./Next";
 import { _data } from "../../Context/Context"
 import Spectro from "./Spectro";
@@ -32,14 +33,15 @@ export default function Audioplayer () {
             context.setSourceNode(source)
         }
     }, [])
-
+    //flex ml-[1rem] w-full justify-between
     return(
         <>
-            <div className="player">
+            <div className="flex ml-0 lg:ml-[1rem] w-full justify-between">
+                <VolumeMobile />
                 <Record />
                 <Player />
                 <Next context={context}/>
-                <Volume />
+                {/* <Volume /> */}
                 <Spectro />
             </div>
         </>

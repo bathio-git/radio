@@ -4,8 +4,8 @@ import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFil
 export default function PlayButton ({record, isPlaying, setSourceAudio, equal}){
 
     return (
-        <div className="flex align-baseline ">
             <button
+                className="w-[105%] text-left flex"
                 onClick={() => {
 
                     let audio = document.getElementById("audioSource");
@@ -31,16 +31,13 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, equal}){
                     }
                 }}
             >
-                <p>
                     {isPlaying ? (
-                        <PauseCircleOutlineOutlinedIcon />
+                        <PauseCircleOutlineOutlinedIcon  />
                     ) : (
                         <PlayCircleFilledWhiteOutlinedIcon />
                     )}
-                    &nbsp;&nbsp;{record.text}
-                </p>
+                    &nbsp;{record.text}
+                    &nbsp;&nbsp;{record.duration}
             </button>
-            &nbsp;&nbsp;{record.duration}
-        </div>
     )
 }
