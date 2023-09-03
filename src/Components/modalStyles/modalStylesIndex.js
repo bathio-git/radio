@@ -10,9 +10,8 @@ const modalStylesIndex = {
         overflow: `auto `,
         WebkitOverflowScrolling: `touch`,
         color: '#aaa',
-        marginTop: '0rem',
-        minWidth: '18rem',
-        width: '90vw',
+        height: `100vh`,
+
     },
 }
 

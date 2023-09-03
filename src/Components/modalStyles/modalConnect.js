@@ -1,17 +1,14 @@
 const modalConnect = {
-    overlay: {
-        position: `relative`,
-        width: `83vw`,
-    },
     content: {
-        position: `asbolute`,
+        position: `absolute`,
+        top: `20vh`,
         border: `none`,
-        background: 'rgba(0,0,0,0.0)',
-        width: '90vw',
+        background: 'rgba(0,250,0,0.0)',
         height: 'auto',
         overflow: `auto `,
         WebkitOverflowScrolling: `touch`,
         color: '#aaa',
+        zIndex: `100`,
     },
 }
 

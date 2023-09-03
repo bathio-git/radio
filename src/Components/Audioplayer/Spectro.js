@@ -2,10 +2,16 @@ import { useContext, useEffect, useState } from "react"
 import { _data } from "../../Context/Context"
 
 
-export default function  Spectro () {
+export default function  Spectro ({size}) {
 
     const context = useContext(_data)
     const [ position, setPosition ] = useState({top: 0, left: 0})
+    const [ positionStyle, setPositionStyle ] = useState(null)
+
+    useEffect(() => {
+        
+        size.width > 640 ? setPositionStyle('fixed') : setPositionStyle('absolute')
+    }, [size])
 
     useEffect(() => {
 
@@ -75,7 +81,7 @@ export default function  Spectro () {
     return(
         <div 
             style={{
-                position: `absolute`,
+                position: positionStyle,
                 top: `0`, 
                 left: '100vw',
                 transform: `rotate(90deg)`,

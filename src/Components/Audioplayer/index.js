@@ -7,7 +7,7 @@ import { _data } from "../../Context/Context"
 import Spectro from "./Spectro";
 import Record from "./Record";
 
-export default function Audioplayer () {
+export default function Audioplayer ({size}) {
     
     const context = useContext(_data);
 
@@ -37,12 +37,14 @@ export default function Audioplayer () {
     return(
         <>
             <div className="flex ml-0 lg:ml-[1rem] w-full justify-between">
-                <VolumeMobile />
+                {/* <VolumeMobile /> */}
                 <Record />
                 <Player />
                 <Next context={context}/>
-                {/* <Volume /> */}
-                <Spectro />
+                {
+                    size && size.width > 640 && <Volume />
+                }
+                <Spectro size={size} />
             </div>
         </>
     )

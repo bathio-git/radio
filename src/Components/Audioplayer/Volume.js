@@ -18,9 +18,9 @@ export default function Volume () {
             setShowUp(x)
         }
     }, [volume])
-    //bg-[#00000080]
+    //
     return (
-        <div className="  mr-[0px] fixed right-0 top-0 h-[100vh] flex flex-col align-middle justify-between text-[#AAA] z-20  ">
+        <div className="  mr-[0px] fixed right-0 top-0 h-[100vh] flex flex-col align-middle justify-between text-[#AAA] z-20 bg-[#00000080] ">
             <button
                 className=" transparent h-[45vh]   "
                 onClick={

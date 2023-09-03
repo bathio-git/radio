@@ -10,7 +10,7 @@ export default function Login ({setRadioList}) {
     let [password, setPassword] = useState('')
 
     return(
-        <div className=" ml-[10%]">
+        <div>
             <form >
                 <TextInput
                     type="text"
