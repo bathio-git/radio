@@ -12,7 +12,7 @@ export default function FirstTime({setRadioList}) {
     const {setCurrentUser} = useContext(_data);
 
     return (
-        <div className=" ml-[10%]">
+        <div>
                 <form >
                     <TextInput
                         type="email"
