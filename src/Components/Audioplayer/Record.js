@@ -6,21 +6,23 @@ import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheck
 
 export default function Record() {
 
-    const [xo, setColor] = useState('#aaa');
-    const [showSave, setShowSave] = useState('hidden');
-    const { sourceNode, currentUser, sourceAudio } = useContext(_data);
-    const [isRecording, setIsRecording] = useState(false);
-    const [recorder, setRecorder] = useState(null);
-    const [recordedChunks, setRecordedChunks] = useState([]);
-    const [startTime, setStartTime] = useState(null);
+    const { sourceNode, currentUser, sourceAudio, setMenu } = useContext(_data);
     
+    const [xo, setColor] = useState('#aaa');
+    const [recorder, setRecorder] = useState(null);
+    const [startTime, setStartTime] = useState(null);
+    const [showSave, setShowSave] = useState('hidden');
+    const [isRecording, setIsRecording] = useState(false);
+    const [recordedChunks, setRecordedChunks] = useState([]);
+
     const RedRadioButtonCheckedOutlinedIcon = styled(RadioButtonCheckedOutlinedIcon)` color: ${xo};`;
 
     useEffect(() => {
         isRecording 
         ? (
             setShowSave('showSave') ,
-            setColor('#aa0000')
+            setColor('#aa0000'),
+            setMenu(false)
         ):(
             setShowSave('displayNone'),
             setColor('#aaa'),
@@ -66,8 +68,18 @@ export default function Record() {
     return (
         <>
             <button 
-                className='mr-4'
+                className='mr-4 flex items-center zAudioPlayer '
                 onClick={() => { 
+                    if (currentUser === null){
+                        setMenu(false);
+                        document.getElementById('message').style.display = 'block';
+                        document.getElementById('message').innerHTML = 'You must be logged in to record';
+                        setTimeout(() => {
+                            document.getElementById('message').style.display = 'none';
+                        }
+                        , 5000)
+                        return;
+                    }
                     setIsRecording(!isRecording)
                 }}
             >
@@ -77,7 +89,7 @@ export default function Record() {
                 <textarea 
                     className="textArea w-[200px] h-[80px] md:w-[300px] md:h-[120px]"
                     id={'textArea'} 
-                    placeholder="note" 
+                    placeholder="title" 
                     maxLength="240" 
                 />
                 <button
@@ -93,8 +105,7 @@ export default function Record() {
                     save
                 </button>
             </div>
-            <p id='message' className="text-[1.5rem] mt-[1.5rem] fixed top-[80vh] left-[20vw]" style={{display:'none'}}> 
-            </p>
+
         </>
     )
 }

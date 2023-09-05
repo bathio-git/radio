@@ -4,13 +4,18 @@ import PauseCircleOutlineOutlinedIcon from '@mui/icons-material/PauseCircleOutli
 export default function PlayPause({isPlaying, playPaused, context}) {
     return (
         <button 
-            onClick={playPaused}>
+            onClick={playPaused}
+            className="flex items-center text-white"
+        >
+
                 {isPlaying ? (
                     <PauseCircleOutlineOutlinedIcon />
                 ) : (
                     <PlayCircleFilledWhiteOutlinedIcon />
                 )}
-                &nbsp;{context.sourceAudio.name}
+                <div className='flex items-center '>
+                    &nbsp;{context.sourceAudio.name}
+                </div>
         </button>
     )
 }

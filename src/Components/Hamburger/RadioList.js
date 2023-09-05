@@ -2,7 +2,7 @@ import { useContext, useEffect, useState} from "react"
 import { _data } from "../../Context/Context"
 import { v4 } from "uuid";
 
-export default function RadioList({ setClose }) {
+export default function RadioList() {
 
     const context = useContext(_data);
     const [ radios, setRadios ] = useState(null)

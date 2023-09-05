@@ -4,7 +4,7 @@ import { modalConnect } from "../modalStyles/modalConnect";
 import UserProfileContent from "./UserProfileContent.js";
 import Image from "../Image"
 
-export default function UserProfile({ setRadioList, currentUser}) {
+export default function aUserProfile({ setRadioList, currentUser}) {
 
     const [showMenu, setMenu] = useState(false)
 
@@ -14,7 +14,7 @@ export default function UserProfile({ setRadioList, currentUser}) {
 
     return (
         <>
-            <div className="mx-[0.75rem] text-[1.5rem] flex items-center h-[15vh] " >
+            <div className="mx-[0.75rem] text-[1.5rem] flex items-center " >
 
                 {
                     showMenu ?(
@@ -75,7 +75,7 @@ export default function UserProfile({ setRadioList, currentUser}) {
                 htmlOpenClassName="ReactModal__Html--open" 
                 overlayClassName="header__overlay zIndex" 
                 >
-                <nav className={`flex flex-col text-[2.815rem] mx-0 md:mx-16`}>
+                <nav className={` mx-0 md:mx-16 mt-[3rem] `}>
                     <UserProfileContent setRadioList={setRadioList}/>
                 </nav>
             </Modal>

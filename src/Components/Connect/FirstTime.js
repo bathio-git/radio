@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react"
-import TextInput from "../TextInput"
+import TextInput from "./TextInput"
 import submitNewUser from "../../lib/submitNewUser"
 import { _data } from "../../Context/Context"
 
@@ -42,7 +42,7 @@ export default function FirstTime({setRadioList}) {
                         {"--> submit"}
                     </button>
                 </form>
-                <p id='message' className="text-[1.5rem] mt-[1.5rem]" style={{display:'none'}}> 
+                <p id='messageC' className="text-[1.5rem] mt-[1.5rem]" style={{display:'none'}}> 
                 </p>
         </div>
     )

@@ -36,7 +36,7 @@ export default function Audioplayer ({size}) {
     //flex ml-[1rem] w-full justify-between
     return(
         <>
-            <div className="flex ml-0 lg:ml-[1rem] zIndex3 w-full justify-between">
+            <div className="flex ml-0 lg:ml-[1rem] w-full justify-between">
                 {/* <VolumeMobile /> */}
                 <Record />
                 <Player />

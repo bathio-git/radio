@@ -101,11 +101,8 @@ a:hover {
 }
 
 .textArea{
-  width : 200px;
-  height : 80px;
   padding : 0.2rem 0.6rem;
   background-color: black;
-  color: #aaa;
   box-sizing : border-box;
   border : 1px solid #aaa;
   border-style : solid none none solid;
@@ -121,6 +118,10 @@ a:hover {
   object-fit: contain; /* Maintain aspect ratio and fill the container */
   object-position: center; /* Center the image within the container */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
 }
 
 .displayNone {
@@ -128,30 +129,44 @@ a:hover {
 }
 
 .showSave {
+  position: fixed;
+  bottom: 0;
+  transform: translate(5%, -5%);
   display: flex;
   flex-direction: column;
-  position: fixed;
-  top: 50%;
-  left: 40%;
-  transform: translateX(-50%) translateY(-50%);
+  height: 80vh;
+  background-color: #000;
+}
+
+@media only screen and (max-width: 600px) {
+  .showSave {
+    transform: translate(-10%, -5%);
+    padding: 8rem 2rem ;
+    width: 60vw;
+    margin-bottom: 8rem;
+  }
 }
 
 .blackborder {
-  border: 2px solid black;
-}
-
-.zIndex {
-  z-index: 100;
-}
-
-.zIndex2 {
-  z-index: 200;
-}
-
-.zIndex3 {
-  z-index: 500;
+  border: 2px solid rgba(28,28,28,0.5);
 }
 
 .transparent {
   background-color: rgba(0, 0, 0, 0);
+}
+
+.zHamburger {
+  z-index: 10;
+}
+
+.zVolume {
+  z-index: 20;
+}
+
+.zSlider {
+  z-index: 30;
+} 
+
+.zAudioPlayer {
+  z-index: 40;
 }

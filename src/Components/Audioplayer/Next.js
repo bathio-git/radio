@@ -5,7 +5,7 @@ export default function Next ({context}){
     return (
         <button
             onClick={() => shuffle({context})}
-            className="flex items-center justify-center h-full"
+            className="flex items-center justify-center h-full zAudioPlayer"
 
         >
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" className="bi bi-shuffle mx-6 lg:mx-8" viewBox="0 0 16 16">

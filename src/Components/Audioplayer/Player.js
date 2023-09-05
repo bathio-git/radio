@@ -33,7 +33,7 @@ export default function Player(){
     }
     
     return (
-        <div className="flex" >
+        <div className="flex zAudioPlayer" >
             <PlayPause 
                 isPlaying={isPlaying} 
                 playPaused={playPaused} 

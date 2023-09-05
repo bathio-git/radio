@@ -11,20 +11,20 @@ import HamburgerSlider from "./HamburgerSlider";
 
 export default function Burger() {
 
-    const { currentUser } = useContext(_data)
+    const { currentUser, showMenu, setMenu } = useContext(_data)
 
-    const [showMenu, setMenu] = useState(false)
     const [showRadioList, setRadioList] = useState(true)
     const [ live, setLive ] = useState(false)
-    const [closeBurger, setClose] = useState(false)
+    const [closeBurger, setClose] = useState(null)
 
-    const close = () => setMenu(false)
-    const open = () => {setMenu(true), setRadioList(true)}
+    const close = () => {setMenu(false); }
+    const open = () => {setMenu(true); setRadioList(true)}
 
     useEffect(() => {
-        closeBurger ? close() : null
-        setClose(false)
-    }, [closeBurger])
+        setClose(close)
+    }, [])
+
+
 
     return (
         <>
@@ -43,15 +43,17 @@ export default function Burger() {
                 ariaHideApp= {false}
                 contentLabel="Modal" 
                 htmlOpenClassName="ReactModal__Html--open" 
-                overlayClassName="header__overlay zIndex" 
+                overlayClassName="header__overlay " 
                 >
-                <nav className={`md:ml-[2rem] zIndex`}>
+                <nav className={`md:ml-[2rem] zHamburger relative`}>
+                    <div className="relative">
                     { currentUser && currentUser !== {} ?( 
                             <UserProfile setRadioList={setRadioList} currentUser={currentUser} />
                         ):( 
                             <Connect setRadioList={setRadioList} />
                         )
                     }
+                    </div>
                     {
                         showRadioList &&
                         <>
@@ -64,9 +66,15 @@ export default function Burger() {
                                     <Recordings edits={false} />
                                 )
                             }
-                            </div>
+                            
+                            <br/><br/><br/></div>
                         </>
                     }
+                    <button 
+                        onClick={() =>  setMenu(false) }
+                    >
+                    </button>
+                        
                 </nav>
             </Modal>
         </>

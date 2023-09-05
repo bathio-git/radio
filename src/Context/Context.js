@@ -12,6 +12,7 @@ export default function Context({ children }) {
 
     const [currentUser, setCurrentUser] = useState(null);
 
+    const [showMenu, setMenu] = useState(false)
 
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
@@ -35,7 +36,8 @@ export default function Context({ children }) {
         currentUser, setCurrentUser,
         sourceAudio, setSourceAudio,
         sourceNode, setSourceNode,
-        mixes, setMixes
+        mixes, setMixes,
+        showMenu, setMenu,
     }}>
         <audio 
             audioautobuffer="autobuffer"

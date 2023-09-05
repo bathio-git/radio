@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"
 import { _data } from "@/Context/Context"
-import TextInput from "../TextInput"
+import TextInput from "./TextInput"
 import submitLogin from "../../lib/submitLogin"
 
 export default function Login ({setRadioList}) {
@@ -30,7 +30,7 @@ export default function Login ({setRadioList}) {
                     {"--> submit"}
                 </button>
             </form>
-            <p id='message' className="text-[1.5rem] mt-[1.5rem]" style={{display:'none'}}> 
+            <p id='messageL' className="text-[1.5rem] mt-[1.5rem]" style={{display:'none'}}> 
             </p>
         </div>
     )

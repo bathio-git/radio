@@ -5,24 +5,23 @@ export default function submitNewUser( event, userName, password, cPassword, ema
     event.preventDefault()
     const validEmail = validMail(email)
 
+    const i = document.getElementById('messageC')
+
     console.log('submitting new user')
     if(validEmail === false){
 
-        const i = document.getElementById('message')
         i.style.display= 'block'
         i.innerText='» please enter a valid email';
         return;
     }
     else if ( password !== cPassword && password !== null){
 
-        const i = document.getElementById('message')
         i.style.display= 'block'
         i.innerText= "» passwords don't match"
         return;
     }
     else if (userName === null || password === null || email === null){
 
-        const i = document.getElementById('message')
         i.style.display= 'block'
         i.innerText= "» please fill all the fields"
         return;
@@ -46,8 +45,8 @@ export default function submitNewUser( event, userName, password, cPassword, ema
 
                 if (data.message) {
                     console.log("okoko")
-                    document.getElementById('message').innerText = data.message;
-                    document.getElementById('message').style.display = 'block';
+                    i.innerText = data.message;
+                    i.style.display = 'block';
                 }
             })
             .catch((error) => console.error('Error:', error));

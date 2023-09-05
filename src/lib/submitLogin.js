@@ -18,7 +18,7 @@ export default function submitLogin ({userName, password, setCurrentUser, setRad
     .then((data) => { 
         if ( data.message === 'Login successful' ){
             console.log(data)
-            let i = document.getElementById('message')
+            let i = document.getElementById('messageL')
             let x = {
                 'username' : data.username,
                 'email' : data.email,
@@ -30,17 +30,17 @@ export default function submitLogin ({userName, password, setCurrentUser, setRad
             clear()
         }
         else if( data.message === 'User not found' ){
-            let i = document.getElementById('message')
+            let i = document.getElementById('messageL')
             i.innerText= ' /: unknown user'
             i.style.display= 'block'    
         }
         else if( data.message === 'Invalid password' ){
-            let i = document.getElementById('message')
+            let i = document.getElementById('messageL')
             i.innerText= ' /: invalid password'
             i.style.display= 'block'    
         }
         else{
-            let i = document.getElementById('message')
+            let i = document.getElementById('messageL')
             i.innerText= ' /: something went wrong'
             i.style.display= 'block'    
         }
@@ -49,7 +49,7 @@ export default function submitLogin ({userName, password, setCurrentUser, setRad
 }
 
 function clear (){
-    let i = document.getElementById('message')
+    let i = document.getElementById('messageL')
     setTimeout(() => {
         i.style.display= 'none'
         console.log('clearing message')
