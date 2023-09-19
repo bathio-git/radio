@@ -10,8 +10,12 @@ export default function Context({ children }) {
     const [ sourceNode, setSourceNode ] = useState(null)
     const [ mixes, setMixes ] = useState(null)
 
+    
+    
     const [currentUser, setCurrentUser] = useState(null);
-
+    
+    const [ showUserX, setShowUserX ] = useState(false)
+    
     const [showMenu, setMenu] = useState(false)
 
     useEffect(() => {
@@ -38,6 +42,7 @@ export default function Context({ children }) {
         sourceNode, setSourceNode,
         mixes, setMixes,
         showMenu, setMenu,
+        showUserX, setShowUserX,
     }}>
         <audio 
             audioautobuffer="autobuffer"

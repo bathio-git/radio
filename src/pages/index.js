@@ -2,7 +2,7 @@ import { _data } from "../Context/Context"
 import Mobile from "@/Components/Home/Mobile";
 import Desktop from "@/Components/Home/Desktop";
 import useWindowSize from "@/lib/useWindowSize";
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 
 export default function Home() {
 

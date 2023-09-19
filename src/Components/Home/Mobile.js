@@ -8,8 +8,7 @@ export default function Mobile({ context, size}) {
     return(
         <>
             <div 
-                className="fixed bottom-0 py-8 blackborder w-screen flex zVolume "
-                style={{background: 'rgba(28,28,28,0.5)', backdropFilter: 'blur(10px)'}}
+                className="fixed bottom-0 py-8 blackborder w-screen flex zVolume bg-[#000]"
             >
                 <div className="flex items-center">
                     <Burger />

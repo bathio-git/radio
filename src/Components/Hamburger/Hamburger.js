@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import Modal from 'react-modal';
 import { modalStylesIndex } from "../modalStyles/modalStylesIndex";
 import RadioList from "./RadioList";
@@ -11,20 +11,13 @@ import HamburgerSlider from "./HamburgerSlider";
 
 export default function Burger() {
 
-    const { currentUser, showMenu, setMenu } = useContext(_data)
+    const { currentUser, showMenu, setMenu, showUserX, setShowUserX } = useContext(_data)
 
     const [showRadioList, setRadioList] = useState(true)
     const [ live, setLive ] = useState(false)
-    const [closeBurger, setClose] = useState(null)
 
     const close = () => {setMenu(false); }
     const open = () => {setMenu(true); setRadioList(true)}
-
-    useEffect(() => {
-        setClose(close)
-    }, [])
-
-
 
     return (
         <>
@@ -61,7 +54,7 @@ export default function Burger() {
                             <div className="mt-[6rem] mx-0 md:mx-16">
                                 {
                                     live === false ?( 
-                                        <RadioList setClose={setClose} />
+                                        <RadioList />
                                 ):(  
                                     <Recordings edits={false} />
                                 )
@@ -75,6 +68,12 @@ export default function Burger() {
                     >
                     </button>
                         
+                   {/*  {
+                        showUserX &&
+                        <p>
+                            lol
+                        </p>
+                    } */}
                 </nav>
             </Modal>
         </>

@@ -4,7 +4,7 @@ import { modalConnect } from "../modalStyles/modalConnect";
 import UserProfileContent from "./UserProfileContent.js";
 import Image from "../Image"
 
-export default function aUserProfile({ setRadioList, currentUser}) {
+export default function UserProfile({ setRadioList, currentUser}) {
 
     const [showMenu, setMenu] = useState(false)
 
