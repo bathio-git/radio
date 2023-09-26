@@ -96,11 +96,31 @@ const worldwide = new Radio(
     '10',
 )
 
+
+const kexp = new Radio(
+    'kexp',
+    'Where the Music Matters',
+    'https://kexp-mp3-128.streamguys1.com/kexp128.mp3',
+    'https://kexp.org/',
+    '11',
+)
+
+const dublab = new Radio(
+    'dublab',
+    'Future Roots Radio',
+    'https://dublab.out.airtime.pro/dublab_a',
+    'https://dublab.com/',
+    '12',
+)
+
+
 const radios = [
     antenas,
     balamii,
     cashmere,
     ckut,
+    dublab,
+    kexp,
     kiosk,
     /* lot, */
     nts,

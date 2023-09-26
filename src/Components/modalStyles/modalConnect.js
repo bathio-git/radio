@@ -1,14 +1,26 @@
 const modalConnect = {
+    overlay: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
     content: {
-        position: `absolute`,
-        top: `20vh`,
-        border: `none`,
-        background: 'rgba(0,250,0,0.0)',
-        height: `100vh`,
-        overflow:`visible`,
-        WebkitOverflowScrolling: `touch`,
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        backgroundColor: 'rgba(0, 0, 0)',
+        filter: 'blur(0.5px)',
+        width: '100vw',
+        height: '100vh',
+        overflow: 'auto',
+        WebkitOverflowScrolling: 'touch',
         color: '#aaa',
-        zIndex: `100`,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        border: 'none',
+        zIndex: '100',
     },
 }
 

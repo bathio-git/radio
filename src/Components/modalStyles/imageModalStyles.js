@@ -1,5 +1,3 @@
-import { border } from "@mui/system"
-
 const imageModalStyles = {
     overlay: {
         display: 'flex',
@@ -9,10 +7,12 @@ const imageModalStyles = {
 
     content: {
         position: 'absolute',
+        top: '0',
+        left: '0',
         backgroundColor: 'rgba(0, 0, 0)',
         filter: 'blur(0.5px)',
-        width: '95vw',
-        height: '95vh',
+        width: '100vw',
+        height: '100vh',
         overflow: 'auto',
         WebkitOverflowScrolling: 'touch',
         color: '#aaa',

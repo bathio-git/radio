@@ -1,22 +1,18 @@
-import { createContext, useState, useRef, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import radios from "./Radios.js";
 
 export const _data = createContext(null);
 
 export default function Context({ children }) {
 
-    const audioElementRef = useRef(null);
     const [ sourceAudio, setSourceAudio ] = useState(null)
     const [ sourceNode, setSourceNode ] = useState(null)
     const [ mixes, setMixes ] = useState(null)
-
-    
-    
+    const [burgerContent, setBurgerContent] = useState('streams')
+    const [burgerUser, setBurgerUser] = useState(null)
     const [currentUser, setCurrentUser] = useState(null);
-    
-    const [ showUserX, setShowUserX ] = useState(false)
-    
-    const [showMenu, setMenu] = useState(false)
+    const [showMenu, setMenu] = useState(false);
+    const [showRadioList, setRadioList] = useState(true);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
@@ -42,7 +38,9 @@ export default function Context({ children }) {
         sourceNode, setSourceNode,
         mixes, setMixes,
         showMenu, setMenu,
-        showUserX, setShowUserX,
+        burgerContent, setBurgerContent,
+        burgerUser, setBurgerUser,
+        showRadioList, setRadioList,
     }}>
         <audio 
             audioautobuffer="autobuffer"

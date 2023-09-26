@@ -1,7 +1,6 @@
 const modalStylesIndex = {
     overlay: {
         position: `relative`,
-        background: 'rgba(28,28,28,0.5)',
         zIndex: `15`,
     },
     content: {
@@ -11,7 +10,6 @@ const modalStylesIndex = {
         overflow: `auto `,
         WebkitOverflowScrolling: `touch`,
         color: '#aaa',
-        height: `100vh`,
     },
 }
 

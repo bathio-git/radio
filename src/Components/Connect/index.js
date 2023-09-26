@@ -16,21 +16,15 @@ export default function Connect({ setRadioList }) {
 
     return (
         <>
-            <p className="mb-[0.5rem] text-[1.5rem]" >
+            <p className="mb-[2rem] text-[1.5rem]" >
                 <button 
                     onClick={ showMenu ? close : open}
                     key="signIn"
                 >
-                    {
-                        showMenu ?( 
-                        <p>&#10005; </p> 
-                        ):(
-                            <>
-                                <LoginOutlinedIcon />
-                                &nbsp;sign in 
-                            </>
-                        )
-                    }
+                    <>
+                        <LoginOutlinedIcon />
+                        &nbsp;sign in 
+                    </>
                 </button>
             </p>
             <Modal
@@ -44,6 +38,12 @@ export default function Connect({ setRadioList }) {
                 overlayClassName="header__overlay zIndex" 
                 >
                 <nav className={`flex text-[2.815rem] justify-center`}>
+                <button
+                        onClick={close}
+                        className="absolute top-0 left-0 m-8 text-[1.5rem]"
+                    >
+                        &#10005;
+                    </button>
                     <Slider setSignUp={setSignUp} signUp={signUp} />
                     <div className="mt-[8rem]">
                         {

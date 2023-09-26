@@ -1,32 +1,35 @@
+import { useRouter } from 'next/router'
 import { _data } from "@/Context/Context";
-import Image from "@/Components/Image/index.js";
 import { useState, useEffect, useContext } from "react";
+import Image from "@/Components/Image/index.js";
 import UserProfileContent from "@/Components/UserProfile/UserProfileContent";
 
-export default function UserX({username}) {
+export default function UserProfile() {
 
-    const { setRadioList, currentUser, setBurgerContent, setBurgerUser } = useContext(_data)
+    const router = useRouter()
+    const username  = router.query.user
+
+    const { setRadioList, currentUser } = useContext(_data)
     const [user, setUser] = useState(null)
     const [edits, setEdits] = useState(false)
 
     useEffect(() => {
-        
         if (currentUser && currentUser.username === username) {
             setEdits(true)
         }
-
     }, [currentUser, username])
 
 
     useEffect(() => {
 
         if (username ) {
+
             if(edits) {
                 setUser(currentUser)
                 return
             }
 
-            fetch(`/api/getUser?username=${username}`)
+            fetch(`/api/getUser?username=${router.query.user}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -36,17 +39,8 @@ export default function UserX({username}) {
     }, [username])
 
     return user === null ? <></> : (
-        <div className="m-4 md:m-16">
+        <div className="m-8 md:m-16">
             <div className="mx-[0.75rem] text-[1.5rem] flex items-center " >
-                <button 
-                    className="absolute top-0 left-0 m-8 text-[1.5rem]"
-                    onClick={ ()=>{
-                        setBurgerContent('streams')
-                        setBurgerUser(null)
-                    }
-                }>
-                    <p>&#8592;</p> 
-                </button>
                 <Image
                     metadata={{
                         type: 'profilePicture',
@@ -65,6 +59,7 @@ export default function UserX({username}) {
                     </a>
                 </div>
             </div>
+
             <nav className={` mx-0 md:mx-16 mt-[3rem] `}>
                 <UserProfileContent 
                     setRadioList={setRadioList}

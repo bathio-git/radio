@@ -1,6 +1,6 @@
-export default async function addImage(event, metadata, selectedImage, setUploadedImage) {
+export async function addImage({event, metadata, setUploadedImage}) {
 
-    event && event.preventDefault()
+    const selectedImage = event.target.files[0];
 
     if (!selectedImage) { 
         console.log('no image selected')
@@ -11,18 +11,17 @@ export default async function addImage(event, metadata, selectedImage, setUpload
     const reader = new FileReader()
     reader.readAsDataURL(selectedImage)
     reader.onloadend = () => {
-        console.log('reader.onloadend')
         const data = {
             image: reader.result,
             metadata: metadata,
         }
-        sendToDb( data )
+        sendToDb( data, setUploadedImage )
     }
 }
 
-async function sendToDb( data ) {
 
-    console.log('sendToDb')
+async function sendToDb( data, setUploadedImage ) {
+
     const response = await fetch('/api/newImage', {
         method: 'POST',
         headers: {
@@ -34,6 +33,7 @@ async function sendToDb( data ) {
     if (response.ok) {
         const data = await response.json()
         console.log('Image upload successful', data)
+        setUploadedImage(data.image)
 
     } else {
         console.log('Image upload failed')

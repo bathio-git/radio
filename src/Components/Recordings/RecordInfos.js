@@ -6,7 +6,7 @@ import ProgressBar from "./ProgressBar";
 
 export default function RecordInfos({ record, equal }) {
 
-    const { radios } = useContext(_data);
+    const { radios, setBurgerContent, setBurgerUser } = useContext(_data);
     const [url, setUrl] = useState("");
 
     useEffect(() => {
@@ -28,7 +28,17 @@ export default function RecordInfos({ record, equal }) {
                 <Link href={url} target="_blank">
                 &nbsp;{record.source}
                 </Link>{" "}
-                <span className="whitespace-nowrap">by {record.username}</span>
+                <button 
+                    className="whitespace-nowrap"
+                    onClick={()=> {
+                            setBurgerContent('user')
+                            setBurgerUser(record.username)
+                        }
+                    }
+                
+                >
+                    by {record.username}
+                </button>
             </p>
         </div>
     );

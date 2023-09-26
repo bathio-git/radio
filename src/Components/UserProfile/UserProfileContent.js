@@ -4,17 +4,22 @@ import { useState } from "react"
 import Disconnect from "./Disconnect"
 import Recordings from "../Recordings"
 
-export default function UserProfileContent ({setRadioList}) {
+export default function UserProfileContent ({setRadioList, user, edits}) {
     
     const { currentUser, setSourceAudio } = useContext(_data)
     const[records, setRecords] = useState(null)
 
+    console.log(edits)
+    
     return (
         <div className="text-[1rem] flex flex-col">
             <div>
-                <Recordings user={currentUser} edits={true} />
+                <Recordings user={user} edits={edits} />
             </div>
-            <Disconnect currentUser={currentUser} setRadioList={setRadioList} /> 
+            {
+                edits &&
+                <Disconnect currentUser={currentUser} setRadioList={setRadioList} />
+            }
         </div>
     )
 }
