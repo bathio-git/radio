@@ -15,8 +15,11 @@ export default function Desktop({ context, size}) {
                     }
                 </div>
             </div>
-            <p id='message' className="text-[1.5rem] mt-[1.5rem] fixed top-[20vh] left-[10vw] text-center zAudioplayer" 
-                style={{display:'none'}}> lollol
+            <p 
+                id='message' 
+                className="text-[1.5rem] mt-[1.5rem] fixed top-[60vh] text-centermd:top-[80vh] zAudioplayer" 
+                style={{display:'none'}}
+            > 
             </p>
             {/* <div className="fixed bottom-0 text-[1rem] m-16">
                 <PayPal />

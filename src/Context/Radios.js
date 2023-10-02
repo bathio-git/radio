@@ -75,7 +75,7 @@ const nts2 = new Radio(
 const raheem = new Radio(
     'raheem',
     'Triennale di Milano',
-    'https://streams.radio.co/s63f12ebcb/listen',
+    'https://listen.studioraheem.it/radioraheem_a',
     'https://www.raheemexperience.com/',
     '8',
 )
@@ -97,14 +97,6 @@ const worldwide = new Radio(
 )
 
 
-const kexp = new Radio(
-    'kexp',
-    'Where the Music Matters',
-    'https://kexp-mp3-128.streamguys1.com/kexp128.mp3',
-    'https://kexp.org/',
-    '11',
-)
-
 const dublab = new Radio(
     'dublab',
     'Future Roots Radio',
@@ -113,6 +105,16 @@ const dublab = new Radio(
     '12',
 )
 
+const oroko = new Radio(
+    'oroko',
+    'Accra, Ghana',
+    'https://s5.radio.co/s23b8ada46/listen',
+    'https://oroko.live/',
+    '13',
+)
+
+
+
 
 const radios = [
     antenas,
@@ -120,13 +122,13 @@ const radios = [
     cashmere,
     ckut,
     dublab,
-    kexp,
     kiosk,
     /* lot, */
     nts,
     nts2,
-    /* raheem,
-    rinsefr, */
+    oroko,
+    /* raheem, */
+    /* rinsefr, */
     worldwide,
 ]
 

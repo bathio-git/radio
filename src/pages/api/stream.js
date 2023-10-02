@@ -2,6 +2,9 @@ import mongoClient from "@/lib/mongoClient";
 import { ObjectId } from "mongodb";
 
 export default async function stream(req, res) {
+
+  console.log("streaming")
+  
   const mixId = req.query.id;
   const client = mongoClient();
 

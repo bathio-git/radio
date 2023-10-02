@@ -5,16 +5,16 @@ import PlayButton from "./PlayButton";
 import XSign from "./XSign";
 
 export default function PlayARecord({ record, onDelete, edits }) {
-    
-    const { sourceAudio, setSourceAudio } = useContext(_data)
-    
-    const [isPlaying, setIsPlaying] = useState(false);
-    
-    const equal = () => (
-        document.getElementById("audioSource").src 
-        === `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`
-    )
 
+    const { sourceAudio, setSourceAudio } = useContext(_data)
+    const [isPlaying, setIsPlaying] = useState(false);
+
+    const stream = `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`;
+    
+    const audioTag = document.getElementById("audioSource");
+    const equal = () => (
+        audioTag.src  === stream
+    )
 
     useEffect(() => {
         

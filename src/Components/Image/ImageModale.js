@@ -56,7 +56,7 @@ export default function ImageModale({ image, classe, edits }) {
                         width={400}
                         height={400}
                         alt="image"
-                        className="object-cover w-[30rem] h-[30rem] rounded-full overflow-hidden mr-3"
+                        className="object-cover w-[80vw] h-[80vw] md:w-[30rem] md:h-[30rem] rounded-full overflow-hidden mr-3"
                     />
                     {
                         edits &&

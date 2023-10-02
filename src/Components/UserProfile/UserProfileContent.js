@@ -9,7 +9,7 @@ export default function UserProfileContent ({setRadioList, user, edits}) {
     const { currentUser, setSourceAudio } = useContext(_data)
     const[records, setRecords] = useState(null)
 
-    console.log(edits)
+    console.log(`can this page edit the profile --> ${edits}`)
     
     return (
         <div className="text-[1rem] flex flex-col">

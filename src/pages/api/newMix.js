@@ -12,13 +12,11 @@ export const config = {
 
 export default async function newMix(req, res) {
 
-  console.log('newMix')
-  
   const client = mongoClient()
   const magic = req.body
   const { base64, text, date, user, source, duration } = magic
   const { username, email } = user
-  console.log(user)
+
   try {
     await client.connect();
     const db = client.db("databaseName")
@@ -29,7 +27,19 @@ export default async function newMix(req, res) {
     await metadataCollection.insertOne({ _id: id, text, date, username, email, source, duration });
     await base64Collection.insertOne({ _id: id, base64 });
 
-    res.status(200).json({ message: 'New mix created successfully' })
+    const x ={
+      message: 'New mix created successfully',
+      id: id.toString(),
+      text,
+      date,
+      username,
+      source,
+      duration,
+    }
+
+    console.log(x)
+
+    res.status(200).json({ x })
   } 
   catch (err) {
     console.error(err)

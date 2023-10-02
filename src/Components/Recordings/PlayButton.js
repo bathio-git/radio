@@ -9,7 +9,8 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, equal}){
                 onClick={() => {
 
                     let audio = document.getElementById("audioSource");
-
+                    
+                    console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`)
                     if (audio.src === `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`) {
                         isPlaying ? audio.pause() : audio.play();
                     } else {
@@ -25,6 +26,7 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, equal}){
                         setSourceAudio(x);
                         audio.oncanplaythrough = () => {
                             audio.play();
+                            console.log(stream)
                         };
                     }
                 }}

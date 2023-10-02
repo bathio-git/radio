@@ -1,5 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useRef } from "react";
 import radios from "./Radios.js";
+import AudioTag from "./AudioTag.js";
 
 export const _data = createContext(null);
 
@@ -29,8 +30,6 @@ export default function Context({ children }) {
         }
     }, [currentUser]);
 
-
-
     return (
     <_data.Provider value={{ radios,
         currentUser, setCurrentUser,
@@ -42,12 +41,7 @@ export default function Context({ children }) {
         burgerUser, setBurgerUser,
         showRadioList, setRadioList,
     }}>
-        <audio 
-            audioautobuffer="autobuffer"
-            id='audioSource'
-            crossOrigin="anonymous"
-            src={ sourceAudio ? sourceAudio.stream : ''}
-        />
+        <AudioTag sourceAudio={sourceAudio} />
         {children}
     </_data.Provider>
     );
