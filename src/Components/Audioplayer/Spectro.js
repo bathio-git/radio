@@ -86,8 +86,8 @@ export default function  Spectro ({size}) {
                 left: '100vw',
                 transform: `rotate(90deg)`,
                 transformOrigin: `top left`,
-                zIndex: `0`,
             }}
+            className="z-0 md:z-20"
         >
                 <canvas ></canvas>
         </div>

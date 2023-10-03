@@ -2,7 +2,7 @@ class Radio {
     constructor( name, slogans, streams, radioUrl, id ) {
         this.name = name;
         this.slogan = slogans;
-        this.stream = streams;
+        this.stream = `${process.env.NEXT_PUBLIC_API_URL}/api/8000?url=${streams}`;
         this.radioUrl = radioUrl;
         this.id = id;
     }
@@ -79,7 +79,7 @@ const raheem = new Radio(
     'https://www.raheemexperience.com/',
     '8',
 )
-9
+
 const rinsefr = new Radio(
     'rinsefr',
     'verrouillé',
@@ -127,7 +127,7 @@ const radios = [
     nts,
     nts2,
     oroko,
-    /* raheem, */
+    raheem,
     /* rinsefr, */
     worldwide,
 ]

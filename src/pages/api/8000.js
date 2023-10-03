@@ -1,10 +1,10 @@
-// How to proxy a Shoutcast stream with Next.js
-
 import { request as httpsRequest } from 'https';
 
-export default async function proxy(req, res) {
+export default async function x(req, res) {
 
-    const streamUrl = 'https://n10as.out.airtime.pro/n10as_a'
+    console.log('Received request:', req.method, req.url);
+
+    const streamUrl = req.query.url;
 
     const streamReq = httpsRequest(streamUrl, (streamRes) => {
         res.writeHead(streamRes.statusCode, streamRes.headers);
@@ -18,19 +18,16 @@ export default async function proxy(req, res) {
 
     streamReq.setHeader('User-Agent', req.headers['user-agent']);
 
-    if (req.method === 'OPTIONS') {
-        res.setHeader('Access-Control-Allow-Headers', '*');
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', '*');
-        res.writeHead(200);
-        res.end();
-        return;
-    }
-
     if (req.method === 'GET') {
         streamReq.end();
     } else {
+        console.log('Handling unsupported request method:', req.method);
         res.setHeader('Allow', 'GET');
         res.status(405).end();
     }
+
+    // Return a promise to tell Next.js that we're done
+    return new Promise((resolve) => {
+        streamReq.on('close', resolve);
+    });
 }
