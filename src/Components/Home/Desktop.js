@@ -17,7 +17,7 @@ export default function Desktop({ context, size}) {
             </div>
             <p 
                 id='message' 
-                className="text-[1.5rem] mt-[1.5rem] fixed top-[60vh] text-centermd:top-[80vh] zAudioplayer" 
+                className="text-[1.5rem] mt-[1.5rem] ml-[10vw] fixed top-[60vh] text-center md:top-[80vh] zAudioplayer items-center "
                 style={{display:'none'}}
             > 
             </p>

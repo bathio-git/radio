@@ -26,7 +26,7 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, equal}){
                         setSourceAudio(x);
                         audio.oncanplaythrough = () => {
                             audio.play();
-                            console.log(stream)
+                            console.log(x.stream)
                         };
                     }
                 }}

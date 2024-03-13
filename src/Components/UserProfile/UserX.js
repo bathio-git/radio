@@ -29,7 +29,6 @@ export default function UserX({username}) {
             fetch(`/api/getUser?username=${username}`)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 setUser(data)
             })
         }

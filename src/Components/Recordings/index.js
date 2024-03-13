@@ -9,9 +9,7 @@ export default function Recordings({ edits, user }) {
     const [ records, setRecords ] = useState(null)
 
     useEffect(() => {
-
-        console.log(user)
-
+        
         if (user) {
             fetch(`/api/getMixesOfUser?user=${user.username}`)
             .then(res => res.json())

@@ -19,46 +19,65 @@ export default function Record() {
 
     useEffect(() => {
         isRecording 
-        ? (
-            setShowSave('showSave') ,
-            setColor('#aa0000'),
-            setMenu(false)
-        ):(
-            setShowSave('displayNone'),
-            setColor('#aaa'),
-            setRecordedChunks([])
-        )
+            ? (
+                console.log('User wants to record'),
+                setShowSave('showSave') ,setColor('#aa0000'),
+                setMenu(false)
+            ):(
+                setShowSave('displayNone'),
+                setColor('#aaa'),
+                setRecordedChunks([])
+            )
     }, [isRecording])
 
     useEffect(() => {
 
         if (!sourceNode) return;
-        
+
+        console.log('I am creating a new recorder for', sourceNode, )
+
         const destination = sourceNode.context.createMediaStreamDestination();
+        console.log('The',sourceNode , 'is connected to', destination)
+
         sourceNode.connect(destination);
+
         const mediaRecorder = new MediaRecorder(destination.stream);
         setRecorder(mediaRecorder);
+        console.log("I'm setting ", mediaRecorder, " as the new recorder")
 
     }, [sourceNode])
 
     useEffect(() => {
+
+
+        if(!window.audioContext){
+            return
+        }
+
+        if(!isRecording){
+            return
+        }
+        
+        console.log(isRecording, recorder)
         
         if (isRecording && recorder) {
+            console.log('I am starting the recorder')
             recorder.start(1000);
 
             // save the start time of the recording
             setStartTime(Date.now());
 
             recorder.ondataavailable = async (e) => {
-                /* console.log(e.data) */
+                console.log(e.data)
                 setRecordedChunks(prevChunks => [...prevChunks, e.data]);
             }
             recorder.onerror = (event) => {
-                console.error("MediaRecorder error: ", event.error);
+                console.error("The mediaRecorder had ", event.error);
             };
         }
 
         return () => {
+            console.log('I am stopping the recorder')
             recorder ? recorder.stop() : null;
         }
 
@@ -87,7 +106,7 @@ export default function Record() {
             </button>
             <div className={showSave}>
                 <textarea 
-                    className="textArea w-[200px] h-[80px] md:w-[300px] md:h-[120px]"
+                    className="textArea w-[200px] h-[80px] md:w-[300px] md:h-[120px] mt-[4rem]"
                     id={'textArea'} 
                     placeholder="title" 
                     maxLength="240" 
