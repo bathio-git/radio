@@ -27,6 +27,10 @@ export default async function save({
         const source = sourceAudio.name;
         const data = { base64, text, date, user, source, duration };
 
+        const jsonString = JSON.stringify(data);
+        const sizeInBytes = new Blob([jsonString]).size;
+        const sizeInMegabytes = sizeInBytes / 1024 / 1024;
+        console.log('Size of request body:', sizeInMegabytes, 'MB');
         //console.log('Trying to save', data)
     
         const res = await fetch('/api/newMix', {
