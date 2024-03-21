@@ -21,6 +21,7 @@ export default async function save({  color, setColor, setIsRecording, recordedC
         message.textContent = 'Saving... May take a few seconds';
     
         const base64 = await blobToBase64(blob);
+        console.log('Base64:', base64.length, 'characters');
         const text = document.getElementById('textArea').value;
         const date = new Date();
         const user = currentUser;
@@ -30,7 +31,7 @@ export default async function save({  color, setColor, setIsRecording, recordedC
         const jsonString = JSON.stringify(data);
         const sizeInBytes = new Blob([jsonString]).size;
         const sizeInMegabytes = sizeInBytes / 1024 / 1024;
-        //console.log('Size of request body:', sizeInMegabytes, 'MB');
+        console.log('Size of request body:', sizeInMegabytes, 'MB');
 
         if(sizeInMegabytes < 3) {
     
@@ -41,7 +42,7 @@ export default async function save({  color, setColor, setIsRecording, recordedC
             });
 
             const json = await res.json();
-            //console.log('Response from server', json)
+            console.log('Response from server', json)
 
             if (json.x.message === "New mix created successfully") {
                 message.textContent = 'Recording saved in your profile';
@@ -83,6 +84,7 @@ export default async function save({  color, setColor, setIsRecording, recordedC
                         body: JSON.stringify(firstData)
                     });
                     const json = await res.json();
+                    console.log('Response from server', json)
                     id = json.x.id;
                 }
                 else {
