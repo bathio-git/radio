@@ -13,10 +13,12 @@ export default async function stream(req, res) {
 
     const mix = await collection.findOne({ _id: new ObjectId(mixId) });
 
+    
     if (!mix) {
       res.status(404).json({ error: 'Mix not found' });
       return;
     }
+    //console.log(mix)
 
     let base64Data = mix.base64;
     console.log('this page should let you stream', base64Data.substring(0, 100));
