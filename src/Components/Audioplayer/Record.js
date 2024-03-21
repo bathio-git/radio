@@ -86,7 +86,7 @@ export default function Record() {
                     oscillator.stop();
                 }, 500);
             }
-            , 10000);
+            , 600000);
 
             recorder.ondataavailable = async (e) => {
                 //console.log(e.data)
