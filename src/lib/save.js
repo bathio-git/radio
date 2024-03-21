@@ -32,7 +32,7 @@ export default async function save({  color, setColor, setIsRecording, recordedC
         const sizeInMegabytes = sizeInBytes / 1024 / 1024;
         //console.log('Size of request body:', sizeInMegabytes, 'MB');
 
-        if(sizeInMegabytes < 4) {
+        if(sizeInMegabytes < 3) {
     
             const res = await fetch('/api/newMix', {
                 method: 'POST',
@@ -61,8 +61,8 @@ export default async function save({  color, setColor, setIsRecording, recordedC
 
         else { // one of the limitations of the free version of Vercel is that the request body size is limited to 4MB
 
-            const chunkSize = 4 * 1024 * 1024; // 4MB in bytes
-            const chunkSizeBase64 = Math.floor(chunkSize * 4 / 3);// Each base64 character encodes 6 bits, so each byte is represented by 4/3 base64 characters
+            const chunkSize = 3 * 1024 * 1024; // 3MB in bytes
+            const chunkSizeBase64 = Math.floor(chunkSize * 4 / 3); // Each base64 character encodes 6 bits, so each byte is represented by 4/3 base64 characters
             
             let chunks = [];
             for (let i = 0; i < base64.length; i += chunkSizeBase64) {
