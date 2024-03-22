@@ -3,6 +3,7 @@ import { _data } from "@/Context/Context";
 import { useEffect, useState, useContext } from "react";
 import PlayButton from "./PlayButton";
 import XSign from "./XSign";
+import EditNote from "./EditNote";
 
 export default function PlayARecord({ record, onDelete, edits }) {
 
@@ -47,6 +48,7 @@ export default function PlayARecord({ record, onDelete, edits }) {
                 isPlaying={isPlaying}
                 setSourceAudio={setSourceAudio}
                 equal={equal}
+                edits={edits}
             />
             <RecordInfos 
                 record={record} 

@@ -27,6 +27,14 @@ export default function Recordings({ edits, user }) {
         setRecords(updatedRecords);
     }
 
+    /* function onEdit (recordId) {
+
+        const updatedRecords = records.map(record => {
+
+        });
+        setRecords(updatedRecords);
+    } */
+
 
     return records === null ? (
         <LoadingAnimation />
@@ -37,6 +45,7 @@ export default function Recordings({ edits, user }) {
                     record={record}
                     onDelete={() => onDelete(record._id)}
                     edits={edits}
+                    nextRecord={records[index + 1]}
                 />
                 <br />
             </div>
