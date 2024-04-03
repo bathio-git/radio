@@ -3,7 +3,7 @@ import EditNote from "./EditNote";
 import PauseCircleOutlineOutlinedIcon from "@mui/icons-material/PauseCircleOutlineOutlined";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined"
 
-export default function PlayButton ({record, isPlaying, setSourceAudio, edits }){
+export default function PlayButton ({record, isPlaying, setSourceAudio, edits, fetchNewRecords }){
 
     const [title, setTitle] = useState(record.text)
     const [edit, setEdit] = useState(false)
@@ -59,7 +59,7 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, edits })
                 </>
             }
             { edits && 
-                <EditNote edit={edit} setEdit={setEdit} title={title} id={record._id}/>
+                <EditNote edit={edit} setEdit={setEdit} title={title} id={record._id} fetchNewRecords={fetchNewRecords}/>
             }
         </div>
     )

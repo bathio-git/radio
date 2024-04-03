@@ -86,6 +86,7 @@ export default function  Spectro ({size}) {
                 left: '100vw',
                 transform: `rotate(90deg)`,
                 transformOrigin: `top left`,
+                display: positionStyle === 'fixed' ? 'block' : 'none',
             }}
             className="z-0 md:z-20"
         >

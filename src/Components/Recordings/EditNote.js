@@ -3,15 +3,16 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 
-export default function EditNote({ edit, setEdit, id, title}) {
+export default function EditNote({ edit, setEdit, id, title, fetchNewRecords}) {
 
     async function modifyNote() {
-        console.log(id)
+        //console.log(id)
         try {
         const response = await axios.post('/api/modifyTitle', { id, title });
         
             if (response.status === 200) {
                 setEdit(!edit)
+                fetchNewRecords()
             }
             
         }catch (error) {

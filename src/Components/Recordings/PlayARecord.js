@@ -4,14 +4,14 @@ import { useEffect, useState, useContext } from "react";
 import PlayButton from "./PlayButton";
 import XSign from "./XSign";
 
-export default function PlayARecord({ record, onDelete, edits }) {
+export default function PlayARecord({ record, onDelete, edits, fetchNewRecords }) {
 
     const { sourceAudio, setSourceAudio } = useContext(_data)
     const [isPlaying, setIsPlaying] = useState(false);
 
     const stream = `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`;
 
-    console.log('stream', stream)
+    //console.log('stream', stream)
     
     const audioTag = document.getElementById("audioSource");
     const equal = () => (
@@ -50,6 +50,7 @@ export default function PlayARecord({ record, onDelete, edits }) {
                 setSourceAudio={setSourceAudio}
                 equal={equal}
                 edits={edits}
+                fetchNewRecords={fetchNewRecords}
             />
             <RecordInfos 
                 record={record} 

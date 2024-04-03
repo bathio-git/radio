@@ -28,7 +28,7 @@ export default function Mobile({ context, size}) {
             {/*  <div className="flex flex-row justify-center mt-4 text-[1rem]">
                 <PayPal />
             </div> */}
-            <div className="flex flex-row justify-center mt-4 text-[1rem]">
+            <div className="flex flex-row  fixed top-[90%]  text-[1rem]">
                 <About />
             </div>
         </>

@@ -7,6 +7,7 @@ import LoadingAnimation from "../LoadingAnimation";
 export default function Recordings({ edits, user }) {
 
     const [ records, setRecords ] = useState(null)
+    const [ fetchRecords, setFetchRecords ] = useState(0)
 
     useEffect(() => {
         
@@ -19,7 +20,11 @@ export default function Recordings({ edits, user }) {
             .then(res => res.json())
             .then(data => setRecords(data.reverse()))
         }
-    }, [])
+    }, [fetchRecords])
+
+    function fetchNewRecords () {
+        setFetchRecords(fetchRecords + 1)
+    }
 
     function onDelete (recordId) {
 
@@ -46,6 +51,7 @@ export default function Recordings({ edits, user }) {
                     onDelete={() => onDelete(record._id)}
                     edits={edits}
                     nextRecord={records[index + 1]}
+                    fetchNewRecords={fetchNewRecords}
                 />
                 <br />
             </div>
