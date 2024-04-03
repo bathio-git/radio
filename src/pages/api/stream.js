@@ -21,7 +21,7 @@ export default async function stream(req, res) {
     //console.log(mix)
 
     let base64Data = mix.base64;
-    console.log('this page should let you stream', base64Data.substring(0, 100));
+    //console.log('this page should let you stream', base64Data.substring(0, 100));
     const base64Prefix = "data:audio/ogg; codecs=opus;base64,";
     if (base64Data.startsWith(base64Prefix)) {
       base64Data = base64Data.substring(base64Prefix.length);

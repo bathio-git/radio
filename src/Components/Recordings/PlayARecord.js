@@ -3,7 +3,6 @@ import { _data } from "@/Context/Context";
 import { useEffect, useState, useContext } from "react";
 import PlayButton from "./PlayButton";
 import XSign from "./XSign";
-import EditNote from "./EditNote";
 
 export default function PlayARecord({ record, onDelete, edits }) {
 
@@ -11,6 +10,8 @@ export default function PlayARecord({ record, onDelete, edits }) {
     const [isPlaying, setIsPlaying] = useState(false);
 
     const stream = `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`;
+
+    console.log('stream', stream)
     
     const audioTag = document.getElementById("audioSource");
     const equal = () => (

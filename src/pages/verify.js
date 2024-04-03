@@ -15,7 +15,7 @@ export default function VerifyPage() {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
 
-        console.log(token)
+        //console.log(token)
 
         // If no token, update the message and exit
         if (!token) {

@@ -2,6 +2,7 @@ import Burger from "../Hamburger/Hamburger"
 import Audioplayer from "../Audioplayer"
 import Lucky from "../Lucky"
 import PayPal from "../PayPal"
+import About from "../About"
 
 export default function Desktop({ context, size}) {
     return(
@@ -24,6 +25,9 @@ export default function Desktop({ context, size}) {
             {/* <div className="fixed bottom-0 text-[1rem] m-16">
                 <PayPal />
             </div> */}
+            <div className="fixed bottom-0 text-[1rem] m-16">
+                <About />
+            </div>
         </>
     )
 }

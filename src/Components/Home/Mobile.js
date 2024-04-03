@@ -2,6 +2,7 @@ import Burger from "../Hamburger/Hamburger"
 import Audioplayer from "../Audioplayer"
 import Lucky from "../Lucky"
 import PayPal from "../PayPal"
+import About from "../About"
 
 export default function Mobile({ context, size}) {
     
@@ -27,6 +28,9 @@ export default function Mobile({ context, size}) {
             {/*  <div className="flex flex-row justify-center mt-4 text-[1rem]">
                 <PayPal />
             </div> */}
+            <div className="flex flex-row justify-center mt-4 text-[1rem]">
+                <About />
+            </div>
         </>
     )
 }
