@@ -77,10 +77,11 @@ a:hover {
 
 
 .textInput{
-  background-color: #000;
-  color: #fff;
+  background-color: black;
+  color: #aaa;
   margin: 0.5rem;
   padding: 1.5rem;
+  font-size: 1.5rem;;
   border-width: 0px 0px 1px 0px; /* top right bottom left */
   border-style: none none solid none;
   border-color: #aaa ;
