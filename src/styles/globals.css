@@ -113,6 +113,15 @@ a:hover {
   border-color: white;
 }
 
+.textInput:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px black inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+.textInput2:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px black inset !important;
+  -webkit-text-fill-color: white !important;
+}
 
 .textInput2:hover{
   background-color: black;
