@@ -101,22 +101,27 @@ a:hover {
   border-radius: 0px;
 }
 
-.textInput2:hover{
-  color: black;
+.textInput:hover{
+  background-color: black;
+  color: white;
 }
 
-.textInput2:focus{
-  color: black;
+.textInput:focus{
+  background-color: black;
+  color: white;
   outline:none;
   border-color: white;
 }
 
-.textInput:hover{
-  color: black;
+
+.textInput2:hover{
+  background-color: black;
+  color: white;
 }
 
-.textInput:focus{
-  color: black;
+.textInput2:focus{
+  background-color: black;
+  color: white;
   outline:none;
   border-color: white;
 }
