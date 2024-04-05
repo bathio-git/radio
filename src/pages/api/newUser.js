@@ -62,13 +62,13 @@ export default async function newUser(req, res) {
             if (existingUsernameInUsers || existingUsernameInNotConfirmed) {
                 res.status(409).json({ message: 'Username already exists' });
                 client.close();
-                return ;
+                return false;
             }
 
             if (existingEmailInUsers || existingEmailInNotConfirmed) {
                 res.status(409).json({ message: 'Email is already used' });
                 client.close();
-                return ;
+                return false;
             }
 
 
@@ -116,12 +116,12 @@ export default async function newUser(req, res) {
             
             await notConfirmed.insertOne({ ...obj, token });
             res.status(201).json({ message: `Hi ${obj.username} ! Please check your email to verify your account. The verification mail might be in the spam folder...` });
-            return ;
+            return true;
         } catch (error) {
         console.error(error);
         // Handle error response
         res.status(500).json({ message: "I wanted to insert in notconfirmed and it didn't work" });
-        return ;
+        return false;
         } finally {
         client.close();
         }
