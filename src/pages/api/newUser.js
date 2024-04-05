@@ -37,7 +37,7 @@ export default async function newUser(req, res) {
         }
 
         // Send success response to client
-        res.status(200).json({ message: 'Registration successful! Please check your email to verify your account.' });
+        //res.status(200).json({ message: 'Registration successful! Please check your email to verify your account.' });
     });
 
     async function dbFunction(client, obj, res) {
@@ -109,7 +109,7 @@ export default async function newUser(req, res) {
             
             
             await notConfirmed.insertOne({ ...obj, token });
-            res.status(201).json({ message: `Verification link sent at ${obj.email}` });
+            res.status(201).json({ message: 'Registration successful! Please check your email to verify your account.' });
             return true;
         } catch (error) {
         console.error(error);
