@@ -33,7 +33,7 @@ export default async function newUser(req, res) {
         if (!userCreated) {
         // dbFunction already sent a response, so just return
         console.log('User not created');
-        return;
+        res.status(500).json({ message: 'Something went wrong' });
         }
 
         // Send success response to client
