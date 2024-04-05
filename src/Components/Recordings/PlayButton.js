@@ -53,7 +53,7 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, edits, f
                     <input 
                         type="text" 
                         value={title}
-                        className="textInput w-[105%]"
+                        className="textInput2 w-[105%]"
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </>

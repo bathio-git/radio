@@ -101,15 +101,25 @@ a:hover {
   border-radius: 0px;
 }
 
-/* .textInput:hover{
-  color: white;
+.textInput2:hover{
+  color: black;
+}
+
+.textInput2:focus{
+  color: black;
+  outline:none;
+  border-color: white;
+}
+
+.textInput:hover{
+  color: black;
 }
 
 .textInput:focus{
-  color: white;
+  color: black;
   outline:none;
   border-color: white;
-} */
+}
 
 .textArea{
   padding : 0.2rem 0.6rem;
