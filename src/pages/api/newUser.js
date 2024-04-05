@@ -62,19 +62,19 @@ export default async function newUser(req, res) {
             if (existingUsernameInUsers || existingUsernameInNotConfirmed) {
                 res.status(409).json({ message: 'Username already exists' });
                 client.close();
-                return false;
+                return ;
             }
 
             if (existingEmailInUsers || existingEmailInNotConfirmed) {
                 res.status(409).json({ message: 'Email is already used' });
                 client.close();
-                return false;
+                return ;
             }
 
 
             // create token
             const token = jwt.sign({ username: obj.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            let verificationLink = `${process.env.NEXT_PUBLIC_API_URL}verify?token=${token}`;
+            let verificationLink = `${process.env.NEXT_PUBLIC_API_URL}/verify?token=${token}`;
             let text = `Hey mate, here is your verification link: ${verificationLink}. If you like the app, please consider donating. Have fun!`;
 
             let mailOptions = {
@@ -115,13 +115,13 @@ export default async function newUser(req, res) {
             
             
             await notConfirmed.insertOne({ ...obj, token });
-            res.status(201).json({ message: 'Registration successful! Please check your email to verify your account.' });
-            return true;
+            res.status(201).json({ message: `Hi ${obj.username} ! Please check your email to verify your account. The verification mail might be in the spam folder...` });
+            return ;
         } catch (error) {
         console.error(error);
         // Handle error response
         res.status(500).json({ message: "I wanted to insert in notconfirmed and it didn't work" });
-        return false;
+        return ;
         } finally {
         client.close();
         }
