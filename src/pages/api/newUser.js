@@ -4,41 +4,47 @@ import jwt from 'jsonwebtoken';
 import mongoClient from "@/lib/mongoClient";
 
 export default async function newUser(req, res) {
-    const client = mongoClient();
+    
+    try{    
+        const client = mongoClient();
 
-    if (req.method !== 'POST') {
-        res.status(405).json({ message: 'Method Not Allowed' });
-        return;
+        if (req.method !== 'POST') {
+            res.status(405).json({ message: 'Method Not Allowed' });
+            return;
+        }
+
+        let magic = req.body;
+
+        // Hash the password outside dbFunction
+        bcrypt.hash(magic.user.password, 5, async function (err, hash) {
+            if (err) {
+            // Handle error
+                res.status(500).json({ message: 'Something went wrong.' });
+            return;
+            }
+
+            let newUserInfo = {
+            username: magic.user.username,
+            password: hash,
+            email: magic.user.email
+            };
+
+            // Create the user
+            const userCreated = await dbFunction(client, newUserInfo, res);
+
+            if (!userCreated) {
+            // dbFunction already sent a response, so just return
+            console.log('User not created');
+            res.status(500).json({ message: 'Something went wrong' });
+            }
+
+            // Send success response to client
+            //res.status(200).json({ message: 'Registration successful! Please check your email to verify your account.' });
+        });
+    }catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Something went wrong.' });
     }
-
-    let magic = req.body;
-
-    // Hash the password outside dbFunction
-    bcrypt.hash(magic.user.password, 5, async function (err, hash) {
-        if (err) {
-        // Handle error
-            res.status(500).json({ message: 'Something went wrong.' });
-        return;
-        }
-
-        let newUserInfo = {
-        username: magic.user.username,
-        password: hash,
-        email: magic.user.email
-        };
-
-        // Create the user
-        const userCreated = await dbFunction(client, newUserInfo, res);
-
-        if (!userCreated) {
-        // dbFunction already sent a response, so just return
-        console.log('User not created');
-        res.status(500).json({ message: 'Something went wrong' });
-        }
-
-        // Send success response to client
-        //res.status(200).json({ message: 'Registration successful! Please check your email to verify your account.' });
-    });
 
     async function dbFunction(client, obj, res) {
         try {
