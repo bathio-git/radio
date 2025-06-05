@@ -12,7 +12,7 @@ class Radio {
 const antenas = new Radio(
     'antenas',
     'n10.as',
-    'https://n10as.out.airtime.pro/n10as_a',
+    'https://n10as.radiocult.fm/stream',
     'https://n10.as/',
     '1',
 )
@@ -114,22 +114,57 @@ const oroko = new Radio(
     '13',
 )
 
+const slacks = new Radio(
+    'slacks',
+    'Tyne & Wear weird radio',
+    'https://slacks.radiocult.fm/stream',
+    'https://slacks.world/',
+    '14',
+)
+
+const mutants = new Radio(
+    'mutant',
+    'Tbilisi, Georgia',
+    'https://www.radioking.com/play/mutant-radioo',
+    'https://www.mutantradio.net/',
+    '15',
+)
+
+const fondation = new Radio(
+    'fondation',
+    'a progressive music platform',
+    'https://streamer.radio.co/s0628bdd53/listen',
+    'https://fondation.fm/',
+    '16',
+)
+
+const subtle = new Radio(
+    'subtle',
+    'broadcasting from hackney, london',
+    'https://subtle.out.airtime.pro/subtle_a?_=1',
+    'https://subtleradio.com/',
+    '17',
+)
 
 
 
 const radios = [
     antenas,
-    balamii,
+    /*balamii,*/
     cashmere,
     ckut,
     dublab,
+    fondation,
     kiosk,
     /* lot, */
+    /*mutants,*/
     nts,
     nts2,
-    oroko,
+    /*oroko,*/
     /* raheem, */
     /* rinsefr, */
+    slacks,
+    subtle,
     worldwide,
 ]
 

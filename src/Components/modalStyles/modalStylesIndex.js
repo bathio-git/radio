@@ -6,7 +6,7 @@ const modalStylesIndex = {
     content: {
         position: `asbolute`,
         border: `none`,
-        background: 'rgba(0,0,8,1)',
+        background: 'rgba(0,0,0,1)',
         overflow: `auto `,
         WebkitOverflowScrolling: `touch`,
         color: '#aaa',
