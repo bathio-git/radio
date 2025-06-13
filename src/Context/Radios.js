@@ -146,6 +146,13 @@ const subtle = new Radio(
     '17',
 )
 
+const voices = new Radio(
+    'voices',
+    'down in Coal Drops Yard',
+    'https://voicesradio.out.airtime.pro/voicesradio_a',
+    'https://voicesradio.org/',
+    '18',
+)
 
 
 const radios = [
@@ -165,6 +172,7 @@ const radios = [
     /* rinsefr, */
     slacks,
     subtle,
+    voices,
     worldwide,
 ]
 
