@@ -1,6 +1,10 @@
 import shuffle from "../../lib/shuffle"
+import { _data } from "../../Context/Context"
+import { useContext } from "react"
 
-export default function Next ({context}){
+export default function Next (){
+
+    const context = useContext(_data);
 
     return (
         <button

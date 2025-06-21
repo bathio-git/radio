@@ -2,12 +2,14 @@ import { useEffect, useState, useCallback} from "react"
 import { v4 } from "uuid";
 import PlayARecord from "./PlayARecord"
 import LoadingAnimation from "../LoadingAnimation";
+import { _data } from "@/Context/Context";
+import { useContext } from "react";
 
 
 export default function Recordings({ edits, user }) {
 
     const [ records, setRecords ] = useState(null)
-    const [ fetchRecords, setFetchRecords ] = useState(0)
+    const { fetchRecords } = useContext(_data);
 
     useEffect(() => {
         
@@ -22,24 +24,11 @@ export default function Recordings({ edits, user }) {
         }
     }, [fetchRecords])
 
-    function fetchNewRecords () {
-        setFetchRecords(fetchRecords + 1)
-    }
-
     function onDelete (recordId) {
 
         const updatedRecords = records.filter(record => record._id !== recordId);
         setRecords(updatedRecords);
     }
-
-    /* function onEdit (recordId) {
-
-        const updatedRecords = records.map(record => {
-
-        });
-        setRecords(updatedRecords);
-    } */
-
 
     return records === null ? (
         <LoadingAnimation />
@@ -51,7 +40,6 @@ export default function Recordings({ edits, user }) {
                     onDelete={() => onDelete(record._id)}
                     edits={edits}
                     nextRecord={records[index + 1]}
-                    fetchNewRecords={fetchNewRecords}
                 />
                 <br />
             </div>

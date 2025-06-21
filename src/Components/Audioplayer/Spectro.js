@@ -95,7 +95,6 @@ export default function  Spectro ({size}) {
     )
 }
 
-
 function getElementPosition(element) {
     const rect = element.getBoundingClientRect();
     return {

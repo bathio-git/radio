@@ -14,6 +14,12 @@ export default function Context({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
     const [showMenu, setMenu] = useState(false);
     const [showRadioList, setRadioList] = useState(true);
+    const [loadingRadio, setLoadingRadio] = useState(null) 
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [ fetchRecords, setFetchRecords ] = useState(0) 
+
+
+    const getAudio = () => (typeof window !== "undefined" ? document.getElementById("audioSource") : null);
 
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
@@ -40,7 +46,11 @@ export default function Context({ children }) {
         burgerContent, setBurgerContent,
         burgerUser, setBurgerUser,
         showRadioList, setRadioList,
-    }}>
+        loadingRadio, setLoadingRadio,
+        isPlaying, setIsPlaying,
+        fetchRecords, setFetchRecords,
+        getAudio,
+    }}> 
         <AudioTag sourceAudio={sourceAudio} />
         {children}
     </_data.Provider>

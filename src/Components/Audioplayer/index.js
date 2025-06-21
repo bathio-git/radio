@@ -6,6 +6,9 @@ import { _data } from "../../Context/Context"
 import Spectro from "./Spectro";
 import Record from "./Record";
 import connectAudio from "../../lib/connectAudio";
+import LoadingAnimation from "../LoadingAnimation";
+
+
 
 export default function Audioplayer ({size}) {
     
@@ -23,11 +26,16 @@ export default function Audioplayer ({size}) {
 
     return(
         <>
-            <div className="flex ml-0 lg:ml-[1rem] w-full justify-between">
+            <div className="flex ml-0 lg:ml-[1rem] w-full h-[5rem]  justify-between">
                 {/* <VolumeMobile /> */}
-                <Record />
-                <Player />
-                <Next context={context}/>
+                <Record/>
+                { context.loadingRadio === true
+                    ? <LoadingAnimation />
+                    :(<>
+                        <Player />
+                        <Next  />
+                    </>)
+                }
             </div>
             <Spectro size={size} />
             {

@@ -1,27 +1,24 @@
 import RecordInfos from "./RecordInfos";
-import { _data } from "@/Context/Context";
 import { useEffect, useState, useContext } from "react";
 import PlayButton from "./PlayButton";
 import XSign from "./XSign";
+import { _data } from "@/Context/Context";
 
-export default function PlayARecord({ record, onDelete, edits, fetchNewRecords }) {
+export default function PlayARecord({ record, onDelete, edits }) {
 
-    const { sourceAudio, setSourceAudio } = useContext(_data)
+    const { getAudio }= useContext(_data);
     const [isPlaying, setIsPlaying] = useState(false);
 
     const stream = `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`;
 
+    const audio = getAudio(stream);
     //console.log('stream', stream)
-    
-    const audioTag = document.getElementById("audioSource");
     const equal = () => (
-        audioTag.src  === stream
+        audio.src  === stream
     )
 
     useEffect(() => {
         
-        let audio = document.getElementById("audioSource");
-
         equal() && audio.play ? setIsPlaying(true) : setIsPlaying(false);
 
         function handlePlay() {
@@ -47,10 +44,8 @@ export default function PlayARecord({ record, onDelete, edits, fetchNewRecords }
             <PlayButton 
                 record={record}
                 isPlaying={isPlaying}
-                setSourceAudio={setSourceAudio}
                 equal={equal}
                 edits={edits}
-                fetchNewRecords={fetchNewRecords}
             />
             <RecordInfos 
                 record={record} 

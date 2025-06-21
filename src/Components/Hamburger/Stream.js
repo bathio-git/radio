@@ -10,11 +10,10 @@ export default function Stream({ setRadioList, currentUser, showRadioList, live,
     return (
         <nav className={`md:ml-[2rem] zHamburger relative`}>
             <div className="relative">
-                { currentUser && currentUser !== {} ?( 
-                        <UserProfile edits={true} />
-                    ):( 
-                        <Connect setRadioList={setRadioList} />
-                    )
+                { 
+                    currentUser && Object.keys(currentUser).length > 0 
+                    ? <UserProfile edits={true} />
+                    : <Connect setRadioList={setRadioList} />
                 }
             </div>
             {
@@ -23,12 +22,10 @@ export default function Stream({ setRadioList, currentUser, showRadioList, live,
                     <HamburgerSlider setLive={setLive} live={live} />
                     <div className="mt-[6rem] mx-0 md:mx-16">
                         {
-                            live === false ?( 
-                                <RadioList />
-                        ):(  
-                            <Recordings edits={false} />
-                        )
-                    }
+                            live === false 
+                            ? <RadioList />
+                            : <Recordings edits={false} />
+                        }
                     
                     </div>
                 </>

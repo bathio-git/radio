@@ -1,20 +1,23 @@
 import { useContext } from "react"
 import { _data } from "../Context/Context"
-import TextChanger from "../lib/depracated/TextChanger";
 import shuffle from "../lib/shuffle";
+import LoadingAnimation2 from "./LoadingAnimation2";
 
 export default function Lucky() {
 
     const context = useContext(_data);
 
-    return context.sourceAudio ? (
-            <TextChanger />
-    ):(
-        <button
-            onClick={() => shuffle({context})}
-            className="mx-[1rem]"
-        >
-            fortune cookies
-        </button>
+    return (
+            context.loadingRadio === null
+            ?(
+                <button
+                    onClick={() => shuffle({context})}
+                    className="mx-[1rem]"
+                >
+                    fortune cookies
+                </button>
+            ):(
+                <LoadingAnimation2/>
+            ) 
     )
 }

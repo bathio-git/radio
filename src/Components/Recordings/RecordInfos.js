@@ -31,11 +31,9 @@ export default function RecordInfos({ record, equal }) {
                 <button 
                     className="whitespace-nowrap"
                     onClick={()=> {
-                            setBurgerContent('user')
-                            setBurgerUser(record.username)
-                        }
-                    }
-                
+                        setBurgerContent('user')
+                        setBurgerUser(record.username)
+                    }}
                 >
                     by {record.username}
                 </button>

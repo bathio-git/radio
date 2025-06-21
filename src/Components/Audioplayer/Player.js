@@ -6,29 +6,34 @@ import PlayPause from "./PlayPause";
 export default function Player(){
 
     const context = useContext(_data);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const audio = context.getAudio();
+    const [isPlaying, setIsPlaying] = useState(() => {
+        audio ? !audio.paused && !audio.ended : false;
+    });
 
     useEffect(() => {
 
-        if( document.getElementById('audioSource') === null ) return;
-        let audio = document.getElementById('audioSource')
-    
-        function handlePlay() { setIsPlaying(true) }
-        function handlePause() { setIsPlaying(false) }
+        if (!audio) return;
 
-        audio.addEventListener('play', handlePlay);
-        audio.addEventListener('pause', handlePause);
+        function updatePlayingStatus() {
+            setIsPlaying(!audio.paused && !audio.ended);
+        }
+
+        audio.addEventListener('play', updatePlayingStatus);
+        audio.addEventListener('pause', updatePlayingStatus);
+        audio.addEventListener('ended', updatePlayingStatus);
+
+        // Set initial state in case it changed
+        updatePlayingStatus();
 
         return () => {
-            audio.removeEventListener('play', handlePlay);
-            audio.removeEventListener('pause', handlePause);
+            audio.removeEventListener('play', updatePlayingStatus);
+            audio.removeEventListener('pause', updatePlayingStatus);
+            audio.removeEventListener('ended', updatePlayingStatus);
         };
-        
-    }, []);
+    }, [context.sourceAudio]); // re-run when source changes
 
     function playPaused () {
-
-        let audio = document.getElementById('audioSource')
         isPlaying ? audio.pause() : audio.play()
     }
     

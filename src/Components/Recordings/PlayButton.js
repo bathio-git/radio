@@ -1,42 +1,24 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import EditNote from "./EditNote";
 import PauseCircleOutlineOutlinedIcon from "@mui/icons-material/PauseCircleOutlineOutlined";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined"
+import { _data } from "@/Context/Context";
+import playARecord from "@/lib/playARecord";
 
-export default function PlayButton ({record, isPlaying, setSourceAudio, edits, fetchNewRecords }){
+
+
+export default function PlayButton ({record, isPlaying, edits}){
 
     const [title, setTitle] = useState(record.text)
     const [edit, setEdit] = useState(false)
+    const context = useContext(_data);
 
     return (
         <div className="flex w-2/3">
             { edit === false && 
                 <button
                     className="w-[105%] text-left flex"
-                    onClick={() => {
-
-                        let audio = document.getElementById("audioSource");
-                        
-                        //console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`)
-                        if (audio.src === `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`) {
-                            isPlaying ? audio.pause() : audio.play();
-                        } else {
-                            const x = {
-                            name: record.text,
-                            slogan: "",
-                            stream: `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`,
-                            radioUrl: "",
-                            id: record._id,
-                            duration: record.duration,
-                            user: record.username,
-                            };
-                            setSourceAudio(x);
-                            audio.oncanplaythrough = () => {
-                                audio.play();
-                                //console.log(x.stream)
-                            };
-                        }
-                    }}
+                    onClick={()=>playARecord(record, context, isPlaying)}
                 >
                         {isPlaying ? (
                             <PauseCircleOutlineOutlinedIcon  />
@@ -59,7 +41,7 @@ export default function PlayButton ({record, isPlaying, setSourceAudio, edits, f
                 </>
             }
             { edits && 
-                <EditNote edit={edit} setEdit={setEdit} title={title} id={record._id} fetchNewRecords={fetchNewRecords}/>
+                <EditNote edit={edit} setEdit={setEdit} title={title} id={record._id} />
             }
         </div>
     )

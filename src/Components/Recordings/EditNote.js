@@ -2,8 +2,12 @@ import axios from 'axios';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import { _data } from '@/Context/Context';
+import { useContext } from 'react';
 
-export default function EditNote({ edit, setEdit, id, title, fetchNewRecords}) {
+export default function EditNote({ edit, setEdit, id, title}) {
+
+    const { fetchNewRecords, setFetchRecords } = useContext(_data);
 
     async function modifyNote() {
         //console.log(id)
@@ -12,7 +16,7 @@ export default function EditNote({ edit, setEdit, id, title, fetchNewRecords}) {
         
             if (response.status === 200) {
                 setEdit(!edit)
-                fetchNewRecords()
+                setFetchRecords(fetchNewRecords + 1)
             }
             
         }catch (error) {
@@ -36,7 +40,6 @@ export default function EditNote({ edit, setEdit, id, title, fetchNewRecords}) {
             </button>
 
         </div>
-    
     ):(
         <button 
             onClick={() => setEdit(!edit) }
