@@ -6,20 +6,26 @@ export const _data = createContext(null);
 
 export default function Context({ children }) {
 
-    const [ sourceAudio, setSourceAudio ] = useState(null)
-    const [ sourceNode, setSourceNode ] = useState(null)
-    const [ mixes, setMixes ] = useState(null)
-    const [burgerContent, setBurgerContent] = useState('streams')
-    const [burgerUser, setBurgerUser] = useState(null)
+    const [sourceAudio, setSourceAudio] = useState(null);
+    const [sourceNode, setSourceNode] = useState(null);
+    const [mixes, setMixes] = useState(null);
+    const [burgerContent, setBurgerContent] = useState('streams');
+    const [burgerUser, setBurgerUser] = useState(null);
     const [currentUser, setCurrentUser] = useState(null);
     const [showMenu, setMenu] = useState(false);
     const [showRadioList, setRadioList] = useState(true);
     const [loadingRadio, setLoadingRadio] = useState(null) 
     const [isPlaying, setIsPlaying] = useState(false);
-    const [ fetchRecords, setFetchRecords ] = useState(0) 
+    const [fetchRecords, setFetchRecords ] = useState(0) 
+    const [uploadedImage, setUploadedImage] = useState(null);
+    const [previousMetadata, setPreviousMetadata] = useState(null);
 
 
-    const getAudio = () => (typeof window !== "undefined" ? document.getElementById("audioSource") : null);
+    function getAudio() {
+         return typeof window !== "undefined" 
+        ? document.getElementById("audioSource") 
+        : null
+    }
 
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
@@ -50,6 +56,8 @@ export default function Context({ children }) {
         isPlaying, setIsPlaying,
         fetchRecords, setFetchRecords,
         getAudio,
+        uploadedImage, setUploadedImage,
+        previousMetadata, setPreviousMetadata
     }}> 
         <AudioTag sourceAudio={sourceAudio} />
         {children}

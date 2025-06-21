@@ -10,7 +10,7 @@ export const config = {
 
 export default async function newImage(req, res) {
 
-  console.log('uploadImage')
+  //console.log('uploadImage')
   
   const client = mongoClient()
   const { image, metadata } = req.body

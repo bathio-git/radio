@@ -109,7 +109,7 @@ export default async function newUser(req, res) {
                 });
             });
 
-            console.log('Email sent: ' + emailResult.response);
+            //console.log('Email sent: ' + emailResult.response);
 
             // Insert user into the database
             

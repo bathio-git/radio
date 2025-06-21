@@ -18,7 +18,7 @@ export default async function deleteMix(req, res) {
     return res.status(400).json({ error: 'Missing mixId in request body' });
   }
 
-  console.log('deleteMix')
+  //console.log('deleteMix')
   
   const client = mongoClient()
 

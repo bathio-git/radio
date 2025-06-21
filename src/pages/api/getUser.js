@@ -2,7 +2,7 @@ import mongoClient from "@/lib/mongoClient";
 
 export default async function getUser(req, res) {
 
-    console.log(req.query.username)
+    //console.log(req.query.username)
     const username = req.query.username;
     const client = mongoClient();
 
@@ -24,7 +24,7 @@ export default async function getUser(req, res) {
             username: x.username,
             email: x.email,
         }
-        console.log(user)
+        //console.log(user)
         res.status(200).json(user);
     } catch (error) {
         console.error(error);

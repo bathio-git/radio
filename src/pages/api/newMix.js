@@ -37,7 +37,7 @@ export default async function newMix(req, res) {
       duration,
     }
 
-    console.log(x)
+    //console.log(x)
 
     res.status(200).json({ x })
   } 

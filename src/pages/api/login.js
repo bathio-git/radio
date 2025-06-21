@@ -28,11 +28,9 @@ export default async function login(req, res) {
             res.status(401).json({ message: 'Invalid password' });
             return;
         }
-        console.log('/////')
-        console.log(user)
-        console.log('/////')
-
-
+        // console.log('/////')
+        // console.log(user)
+        // console.log('/////')
         res.status(200).json({ message: 'Login successful', username: user.username, email: user.email});
         
     } catch (error) {

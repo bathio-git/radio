@@ -1,23 +1,33 @@
 import Icon from './Icon';
 import ImageModale from './ImageModale';
 import { addImage } from '@/lib/addImage';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { _data } from '@/Context/Context.js';
 
 export default function Image({ metadata, classe, edits}) {
 
-    const [uploadedImage, setUploadedImage] = useState();
-
+    const { 
+        uploadedImage, setUploadedImage,
+        previousMetadata, setPreviousMetadata
+     } = useContext(_data);
+  
     useEffect(() => {
         
         const encodedMetadata = JSON.stringify(metadata); 
-        fetch(`/api/getImage?metadata=${encodedMetadata}`)
+
+        if (encodedMetadata !== JSON.stringify(previousMetadata)) {
+
+            setPreviousMetadata(metadata);
+            fetch(`/api/getImage?metadata=${encodedMetadata}`)
             .then(res => res.json())
             .then(data => {
                 if (data[0]) {
                     setUploadedImage(data[0].image);
                 }
             })
-    }, [metadata])
+            .catch(err => console.error('Error fetching image:', err));
+        }
+    }, [])
 
     return (
         <div>
