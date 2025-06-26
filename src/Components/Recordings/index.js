@@ -14,8 +14,9 @@ export default function Recordings({ edits, user }) {
 
     const efficientFetch = useFetch({ setRecords,user })
 
-    useEffect(() => efficientFetch , [fetchRecords, user]);
-
+    useEffect(() => {
+        efficientFetch();
+    }, [fetchRecords, user]);
 
     return records === null ? (
         <LoadingAnimation />
