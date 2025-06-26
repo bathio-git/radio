@@ -7,7 +7,7 @@ import { useContext } from 'react';
 
 export default function EditNote({ edit, setEdit, id, title}) {
 
-    const { fetchNewRecords, setFetchRecords } = useContext(_data);
+    const { fetchRecords, setFetchRecords } = useContext(_data);
 
     async function modifyNote() {
         //console.log(id)
@@ -16,7 +16,7 @@ export default function EditNote({ edit, setEdit, id, title}) {
         
             if (response.status === 200) {
                 setEdit(!edit)
-                setFetchRecords(fetchNewRecords + 1)
+                setFetchRecords(fetchRecords + 1)
             }
             
         }catch (error) {
