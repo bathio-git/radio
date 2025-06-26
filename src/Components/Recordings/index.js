@@ -1,48 +1,41 @@
-import { useEffect, useState, useCallback} from "react"
+import { useEffect, useState, useContext } from "react";
 import { v4 } from "uuid";
-import PlayARecord from "./PlayARecord"
+import PlayARecord from "./PlayARecord";
 import LoadingAnimation from "../LoadingAnimation";
 import { _data } from "@/Context/Context";
-import { useContext } from "react";
-
+import useFetch from "@/lib/useFetch";
+import onDelete from "@/lib/onDelete";
 
 export default function Recordings({ edits, user }) {
 
-    const [ records, setRecords ] = useState(null)
-    const { fetchRecords } = useContext(_data);
+    const { fetchRecords, setFetchRecords, setUserRecords, setAllRecords } = useContext(_data);
 
-    useEffect(() => {
-        
-        if (user) {
-            fetch(`/api/getMixesOfUser?user=${user.username}`)
-            .then(res => res.json())
-            .then(data => setRecords(data.reverse()))
-        } else{
-            fetch(`/api/getAllMixes`)
-            .then(res => res.json())
-            .then(data => setRecords(data.reverse()))
-        }
-    }, [fetchRecords])
+    const [records, setRecords] = useState(null);
 
-    function onDelete (recordId) {
+    const efficientFetch = useFetch({ setRecords,user })
 
-        const updatedRecords = records.filter(record => record._id !== recordId);
-        setRecords(updatedRecords);
-    }
+    useEffect(() => efficientFetch , [fetchRecords, user]);
+
 
     return records === null ? (
         <LoadingAnimation />
     ) : (
         records.map((record, index) =>
-            <div className="mb-12 text-[1rem] m-[1.5rem] " key={v4()}>
+            <div className="mb-12 text-[1rem] m-[1.5rem]" key={v4()}>
                 <PlayARecord 
                     record={record}
-                    onDelete={() => onDelete(record._id)}
+                    onDelete={() => onDelete(
+                        record._id,
+                        records,
+                        setRecords,
+                        setFetchRecords,
+                        setUserRecords,
+                        setAllRecords
+                    )}
                     edits={edits}
-                    nextRecord={records[index + 1]}
                 />
                 <br />
             </div>
         )
-    )
+    );
 }

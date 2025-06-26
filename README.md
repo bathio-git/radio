@@ -1,3 +1,5 @@
+=============================================
+
 This is a nextjs project deployed on vercel.
 It aslo use mongoDB.
 
@@ -9,5 +11,11 @@ You can play with a live version of this project at radio.bathio.xyz
 
 It doesn't work on mobile (yet)
 
+----------------
+
+To install dependencies run 'npm install'
+Then run 'npm run dev'
 
 (ﾉ^_^)
+
+==========================================

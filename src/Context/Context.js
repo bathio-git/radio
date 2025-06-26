@@ -19,7 +19,9 @@ export default function Context({ children }) {
     const [fetchRecords, setFetchRecords ] = useState(0) 
     const [uploadedImage, setUploadedImage] = useState(null);
     const [previousMetadata, setPreviousMetadata] = useState(null);
-
+    const [userRecords, setUserRecords] = useState(null);
+    const [allRecords, setAllRecords] = useState(null);
+    const [previousFetchRecords, setPreviousFetchRecords] = useState(null);
 
     function getAudio() {
          return typeof window !== "undefined" 
@@ -57,7 +59,10 @@ export default function Context({ children }) {
         fetchRecords, setFetchRecords,
         getAudio,
         uploadedImage, setUploadedImage,
-        previousMetadata, setPreviousMetadata
+        previousMetadata, setPreviousMetadata,
+        userRecords, setUserRecords,
+        allRecords, setAllRecords,
+        previousFetchRecords, setPreviousFetchRecords
     }}> 
         <AudioTag sourceAudio={sourceAudio} />
         {children}

@@ -15,6 +15,7 @@ export default async function deleteMix(req, res) {
   const { mixId } = req.body;
   
   if (!mixId) {
+    console.log('Missing mixId in request body')
     return res.status(400).json({ error: 'Missing mixId in request body' });
   }
 
@@ -35,7 +36,7 @@ export default async function deleteMix(req, res) {
     if (result.deletedCount === 0) {
       return res.status(404).json({ message: 'No mix found with this id' });
     }
-
+    console.log('Mix deleted successfully')
     res.status(200).json({ message: 'Mix deleted successfully' })
   } 
   catch (err) {

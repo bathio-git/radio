@@ -1,10 +1,8 @@
-import { styled } from '@mui/system';
 import { _data } from "@/Context/Context";
 import timeLimit from '@/lib/timeLimit';
 import RecordInterface from './RecordInterface';
 import createRecorder  from '@/lib/createRecorder';
 import { useEffect, useState, useContext } from 'react';
-import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
 
 export default function Record() {
 
@@ -15,17 +13,14 @@ export default function Record() {
     const [isRecording, setIsRecording] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
 
-    const { sourceNode, currentUser, sourceAudio, setMenu } = useContext(_data);
-    
-    const RedRadioButton = styled(RadioButtonCheckedOutlinedIcon)` color: ${color};`;
+    const { sourceNode, setMenu } = useContext(_data);
 
     useEffect(() => {
         
         let timeoutId = null;
 
         isRecording 
-            ? (
-                //console.log('User wants to record'),
+            ? (//console.log('User wants to record'),
                 setShowSave('showSave') ,setColor('#aa0000'),
                 setMenu(false),
 
@@ -35,14 +30,12 @@ export default function Record() {
                     document.getElementById('message').style.display = 'none';
                 }
                 , 6000)
-
             ):(
                 setShowSave('displayNone'),
                 setColor('#aaa')
             )
         
         if(!window.audioContext) return
-
         //console.log(isRecording, recorder)
         
         if (isRecording && recorder) {
@@ -83,15 +76,11 @@ export default function Record() {
     
     return (
         <RecordInterface 
-            RedRadioButton={RedRadioButton}
             color={color}
             setColor={setColor}
             setIsRecording={setIsRecording}
             recordedChunks={recordedChunks}
-            currentUser={currentUser}
-            sourceAudio={sourceAudio}
             startTime={startTime}
-            setMenu={setMenu}
             isRecording={isRecording}
             showSave={showSave}
         />
