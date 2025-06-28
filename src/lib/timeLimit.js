@@ -1,11 +1,15 @@
-export default function timeLimit({recorder, setColor, setShowSave, setIsRecording, setStartTime}) {
+export default function timeLimit({recorder, setShowSave, setIsRecording, setStartTime}) {
     
     const timeoutId = setTimeout(() => {
-        setColor('#aaa')
+        
+        setIsRecording(false);
+
         if (recorder.state === "active") recorder.pause();
+        
+        
         const messageElement = document.getElementById('message');
         messageElement.style.display = 'block';
-        messageElement.innerHTML = "It's been 10min... Recording stopped. Click save to save the recording";
+        messageElement.innerHTML = "It's been 10min... Recording stopped";
         messageElement.appendChild(document.createElement('br'));
 
         // create a cancel button
@@ -15,7 +19,7 @@ export default function timeLimit({recorder, setColor, setShowSave, setIsRecordi
 
         cancelButton.onmouseover = () => {
             cancelButton.style.borderBottom = '1px solid';
-            cancelButton.style.paddingBottom = '2px'; // Adjust this value to change the position of the underline
+            cancelButton.style.paddingBottom = '2px'; 
         }
         cancelButton.onmouseout = () => {
             cancelButton.style.borderBottom = 'none';
@@ -24,7 +28,6 @@ export default function timeLimit({recorder, setColor, setShowSave, setIsRecordi
         cancelButton.onclick = () => {
             messageElement.style.display = 'none';
             setShowSave('displayNone');
-            setIsRecording(false);
         }
         messageElement.appendChild(cancelButton);
 
@@ -39,6 +42,7 @@ export default function timeLimit({recorder, setColor, setShowSave, setIsRecordi
         oscillator.start();
         setTimeout(() => {
             oscillator.stop();
+            setShowSave('showSave')
         }, 500);
     }, 600000);
 

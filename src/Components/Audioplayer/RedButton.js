@@ -4,9 +4,9 @@ import { useContext } from 'react';
 import { _data } from '@/Context/Context';
 
 
-export default function RedButton({ color, setIsRecording, isRecording }){
+export default function RedButton({ setIsRecording, isRecording }){
     
-    const RedRadioButton = styled(RadioButtonCheckedOutlinedIcon)` color: ${color};`;
+    const RedRadioButton = styled(RadioButtonCheckedOutlinedIcon)` color: ${isRecording ? '#aa0000' : '#aaa' };`;
     const { currentUser, setMenu } = useContext(_data);
 
     return(

@@ -4,7 +4,7 @@ import yay from './yay.js';
 import { useContext } from 'react';
 import { _data } from "@/Context/Context";
 
-export default function useSave({ setColor, setIsRecording, recordedChunks, startTime }) {
+export default function useSave({ setIsRecording, recordedChunks, startTime }) {
     
     const {
        currentUser, sourceAudio, setUserRecords, setAllRecords
@@ -17,8 +17,6 @@ export default function useSave({ setColor, setIsRecording, recordedChunks, star
         let duration
         if (startTime === '10min')  duration = '10:00'
         else duration = formatTime((Date.now() - startTime) / 1000);
-
-        setColor('#aaa');
 
         const blob = new Blob(recordedChunks, { type: 'audio/ogg; codecs=opus' });
 

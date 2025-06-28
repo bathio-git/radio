@@ -6,7 +6,6 @@ import { useEffect, useState, useContext } from 'react';
 
 export default function Record() {
 
-    const [color, setColor] = useState('#aaa');
     const [recorder, setRecorder] = useState(null);
     const [startTime, setStartTime] = useState(null);
     const [showSave, setShowSave] = useState('hidden');
@@ -19,22 +18,6 @@ export default function Record() {
         
         let timeoutId = null;
 
-        isRecording 
-            ? (//console.log('User wants to record'),
-                setShowSave('showSave') ,setColor('#aa0000'),
-                setMenu(false),
-
-                document.getElementById('message').style.display = 'block',
-                document.getElementById('message').innerHTML = "Recording... Click save to save the recording. Click the red button to cancel",
-                setTimeout(() => {
-                    document.getElementById('message').style.display = 'none';
-                }
-                , 6000)
-            ):(
-                setShowSave('displayNone'),
-                setColor('#aaa')
-            )
-        
         if(!window.audioContext) return
         //console.log(isRecording, recorder)
         
@@ -44,10 +27,19 @@ export default function Record() {
 
             // save the start time of the recording
             setStartTime(Date.now());
+
+            //update ui
+            setShowSave('showSave')
+            setMenu(false)
+            document.getElementById('message').style.display = 'block',
+            document.getElementById('message').innerHTML = "Recording...",
+            setTimeout(() => {
+                document.getElementById('message').style.display = 'none';
+            }, 9000)
             
             recorder.onstart = () => {
                 // after 10 minutes stop the recording and ask the user to save
-                timeoutId = timeLimit({recorder, setColor, setShowSave, setIsRecording, setStartTime});
+                timeoutId = timeLimit({recorder, setShowSave, setIsRecording, setStartTime});
             }
 
             recorder.ondataavailable = async (e) => {
@@ -65,6 +57,7 @@ export default function Record() {
             const mediaRecorder = createRecorder(sourceNode);
             setRecorder(mediaRecorder);
             clearTimeout(timeoutId);
+            setShowSave('displayNone')
         }
     }, [isRecording])
 
@@ -76,8 +69,6 @@ export default function Record() {
     
     return (
         <RecordInterface 
-            color={color}
-            setColor={setColor}
             setIsRecording={setIsRecording}
             recordedChunks={recordedChunks}
             startTime={startTime}
