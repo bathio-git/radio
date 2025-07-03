@@ -1,12 +1,19 @@
 import useSave  from '@/lib/useSave';
 import RedButton from './RedButton';
 import ClockAnimation from '../ClockAnimation';
+import { useState } from 'react';
+import SavingAnimation from '../SavingAnimation'
 
-export default function RecordInterface(
-    { setIsRecording, recordedChunks, startTime, isRecording, showSave}
-){
+export default function RecordInterface({ 
+    message, setMessage,
+    isRecording,setIsRecording, 
+    recordedChunks, startTime,  showSave
+}){
 
     const save = useSave({ setIsRecording, recordedChunks, startTime })
+    const [isSaving, setIsSaving] = useState(false)
+
+    const x = 'allo'
 
     return (<>
         <RedButton 
@@ -26,7 +33,12 @@ export default function RecordInterface(
             >
                 save
             </button>
-            <ClockAnimation size={30} isRecording={isRecording} />
+            <ClockAnimation isRecording={isRecording} />
+            {/* <SavingAnimation 
+                isSaving={isSaving}
+                className=''
+            /> */}
+            <p>{x}</p>
         </div>
     </>)
 }

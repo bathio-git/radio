@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function ClockAnimation({ size = 80, isRecording }) {
+export default function ClockAnimation({ size = 30, isRecording }) {
     const radius = 40;
     const circumference = 2 * Math.PI * radius;
     const totalSeconds = 600; // 10 minutes

@@ -1,8 +1,6 @@
 export default function timeLimit({recorder, setShowSave, setIsRecording, setStartTime}) {
     
     const timeoutId = setTimeout(() => {
-        
-        setIsRecording(false);
 
         if (recorder.state === "active") recorder.pause();
         
@@ -28,6 +26,7 @@ export default function timeLimit({recorder, setShowSave, setIsRecording, setSta
         cancelButton.onclick = () => {
             messageElement.style.display = 'none';
             setShowSave('displayNone');
+            setIsRecording(false);
         }
         messageElement.appendChild(cancelButton);
 

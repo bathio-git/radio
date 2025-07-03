@@ -11,9 +11,14 @@ export default function Record() {
     const [showSave, setShowSave] = useState('hidden');
     const [isRecording, setIsRecording] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
+    const [message, setMessage] = useState(' allo ')
 
     const { sourceNode, setMenu } = useContext(_data);
 
+
+    // So this useEffect explain what happen when you click the record button
+    // Look at useSave to see what happen when you click save
+    // RecordInterface is the explaination of the ui / interaction 
     useEffect(() => {
         
         let timeoutId = null;
@@ -31,11 +36,12 @@ export default function Record() {
             //update ui
             setShowSave('showSave')
             setMenu(false)
-            document.getElementById('message').style.display = 'block',
-            document.getElementById('message').innerHTML = "Recording...",
-            setTimeout(() => {
-                document.getElementById('message').style.display = 'none';
-            }, 9000)
+            setMessage('Recording...')
+            //document.getElementById('message').style.display = 'block',
+            //document.getElementById('message').innerHTML = "Recording...",
+            // setTimeout(() => {
+            //     document.getElementById('message').style.display = 'none';
+            // }, 000)
             
             recorder.onstart = () => {
                 // after 10 minutes stop the recording and ask the user to save
@@ -58,6 +64,8 @@ export default function Record() {
             setRecorder(mediaRecorder);
             clearTimeout(timeoutId);
             setShowSave('displayNone')
+            document.getElementById('message').style.display = 'none';
+            setMessage(' ')
         }
     }, [isRecording])
 
@@ -74,6 +82,8 @@ export default function Record() {
             startTime={startTime}
             isRecording={isRecording}
             showSave={showSave}
+            message={message}
+            setMessage={setMessage}
         />
     )
 }
