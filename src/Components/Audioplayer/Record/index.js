@@ -8,10 +8,8 @@ export default function Record() {
 
     const [recorder, setRecorder] = useState(null);
     const [startTime, setStartTime] = useState(null);
-    const [showSave, setShowSave] = useState('hidden');
     const [isRecording, setIsRecording] = useState(false);
     const [recordedChunks, setRecordedChunks] = useState([]);
-    const [message, setMessage] = useState(' allo ')
 
     const { sourceNode, setMenu } = useContext(_data);
 
@@ -20,32 +18,19 @@ export default function Record() {
     // Look at useSave to see what happen when you click save
     // RecordInterface is the explaination of the ui / interaction 
     useEffect(() => {
-        
         let timeoutId = null;
 
-        if(!window.audioContext) return
-        //console.log(isRecording, recorder)
+        if(!window.audioContext) return;//console.log(isRecording, recorder)
         
-        if (isRecording && recorder) {
-            //console.log('I am starting the recorder')
-            recorder.start(1000);
-
-            // save the start time of the recording
-            setStartTime(Date.now());
+        if (isRecording && recorder) { //console.log('I am starting the recorder')
+            recorder.start(1000); //console.log('recorder.start')
+            setStartTime(Date.now()); // save the start time of the recording
 
             //update ui
-            setShowSave('showSave')
             setMenu(false)
-            setMessage('Recording...')
-            //document.getElementById('message').style.display = 'block',
-            //document.getElementById('message').innerHTML = "Recording...",
-            // setTimeout(() => {
-            //     document.getElementById('message').style.display = 'none';
-            // }, 000)
             
-            recorder.onstart = () => {
-                // after 10 minutes stop the recording and ask the user to save
-                timeoutId = timeLimit({recorder, setShowSave, setIsRecording, setStartTime});
+            recorder.onstart = () => { // after 10 minutes stop the recording and ask the user to save
+                timeoutId = timeLimit({recorder, setIsRecording, setStartTime});
             }
 
             recorder.ondataavailable = async (e) => {
@@ -63,9 +48,6 @@ export default function Record() {
             const mediaRecorder = createRecorder(sourceNode);
             setRecorder(mediaRecorder);
             clearTimeout(timeoutId);
-            setShowSave('displayNone')
-            document.getElementById('message').style.display = 'none';
-            setMessage(' ')
         }
     }, [isRecording])
 
@@ -81,9 +63,6 @@ export default function Record() {
             recordedChunks={recordedChunks}
             startTime={startTime}
             isRecording={isRecording}
-            showSave={showSave}
-            message={message}
-            setMessage={setMessage}
         />
     )
 }
