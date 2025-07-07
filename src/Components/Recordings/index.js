@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { v4 } from "uuid";
 import PlayARecord from "./PlayARecord";
-import LoadingAnimation from "../LoadingAnimation";
+import LoadingAnimation from "../Animations/LoadingAnimation";
 import { _data } from "@/Context/Context";
 import useFetch from "@/lib/useFetch";
 import onDelete from "@/lib/onDelete";

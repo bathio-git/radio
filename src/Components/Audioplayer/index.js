@@ -6,7 +6,7 @@ import { _data } from "../../Context/Context"
 import Spectro from "./Spectro";
 import Record from "./Record";
 import connectAudio from "../../lib/connectAudio";
-import LoadingAnimation from "../LoadingAnimation";
+import LoadingAnimation from "../Animations/LoadingAnimation";
 
 
 
@@ -33,14 +33,15 @@ export default function Audioplayer ({size}) {
                     ? <LoadingAnimation />
                     :(<>
                         <Player />
+                        <Volume />
                         <Next  />
                     </>)
                 }
             </div>
             <Spectro size={size} />
-            {
+            {/* {
                 size && size.width > 640 && <Volume />
-            }
+            } */}
         </>
     )
 }

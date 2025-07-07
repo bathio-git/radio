@@ -1,6 +1,6 @@
 import { useContext, useRef, useEffect } from "react";
 import { _data } from "../../Context/Context";
-import LoadingAnimation from "../LoadingAnimation";
+import LoadingAnimation from "../Animations/LoadingAnimation";
 import { useWaveform } from "@/lib/ProgressBar/useWaveform";
 import { useAudioProgress } from "@/lib/ProgressBar/useAudioProgress";
 import { useCanvasInteraction } from "@/lib/ProgressBar/useCanvasInteraction";

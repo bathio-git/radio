@@ -1,6 +1,6 @@
-export default function timeLimit({recorder, setShowSave, setIsRecording, setStartTime}) {
+export default function timeLimit({recorder, setIsRecording, setStartTime}) {
     
-    const timeoutId = setTimeout(() => {
+	const timeoutId = setTimeout(() => {
 
         if (recorder.state === "active") recorder.pause();
         
@@ -25,7 +25,6 @@ export default function timeLimit({recorder, setShowSave, setIsRecording, setSta
 
         cancelButton.onclick = () => {
             messageElement.style.display = 'none';
-            setShowSave('displayNone');
             setIsRecording(false);
         }
         messageElement.appendChild(cancelButton);
@@ -36,12 +35,11 @@ export default function timeLimit({recorder, setShowSave, setIsRecording, setSta
         const context = window.audioContext;
         const oscillator = context.createOscillator();
         oscillator.type = 'sine';
-        oscillator.frequency.setValueAtTime(440, context.currentTime);
+        oscillator.frequency.setValueAtTime(220, context.currentTime);
         oscillator.connect(context.destination);
         oscillator.start();
         setTimeout(() => {
             oscillator.stop();
-            setShowSave('showSave')
         }, 500);
     }, 600000);
 

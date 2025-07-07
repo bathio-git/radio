@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { _data } from "../Context/Context"
 import shuffle from "../lib/shuffle";
-import LoadingAnimation2 from "./LoadingAnimation2";
+import LoadingAnimation2 from "./Animations/LoadingAnimation2";
 
 export default function Lucky() {
 

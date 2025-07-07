@@ -1,8 +1,8 @@
-import useSave  from '@/lib/useSave';
 import RedButton from './RedButton';
-import ClockAnimation from '../../ClockAnimation';
+import useSave  from '@/lib/useSave';
+import ClockAnimation from '@/Components/Animations/ClockAnimation';
+import SavingAnimation from '@/Components/Animations/SavingAnimation';
 import { useEffect, useState } from 'react';
-import SavingAnimation from '../../SavingAnimation'
 
 export default function RecordInterface({ 
     isRecording,setIsRecording, 

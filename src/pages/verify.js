@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
-import LoadingAnimation from '@/Components/LoadingAnimation';
+import LoadingAnimation from '@/Components/Animations/LoadingAnimation';
 import { _data } from "../Context/Context"
 
 export default function VerifyPage() {
