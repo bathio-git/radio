@@ -3,6 +3,7 @@ import React, { useState, useRef, useCallback } from 'react';
 export default function Volume() {
   const [volume, setVolume] = useState(50); // Volume from 0 to 125
   const [isDragging, setIsDragging] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const triangleRef = useRef(null);
 
   const handleMouseDown = useCallback((e) => {
@@ -83,10 +84,33 @@ export default function Volume() {
             width: '72px',
             height: '8px',
             border: '3px solid #000',
-            background: 'linear-gradient(to right, #007802 0%, #00CE72 30%, #FFD100 60%, #FFD100 68%, #DE1B1B 100%)'
+            background: 'linear-gradient(to right, #00aa00 0%, #228B22 30%, #FFD100 60%, #FFD100 68%, #aa0000 100%)'
           }}
           onMouseDown={handleMouseDown}
+          onMouseEnter={() => setIsHovering(true)}
+          onMouseLeave={() => setIsHovering(false)}
         >
+          {/* Volume level tooltip */}
+          {isHovering && (
+            <div    className='select-none'
+                    style={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -120%)",
+                        background: "#222",
+                        color: "#fff",
+                        padding: "4px 10px",
+                        borderRadius: "6px",
+                        fontSize: "1rem",
+                        pointerEvents: "none",
+                        whiteSpace: "nowrap",
+                        zIndex: 10,
+                    }}
+                >
+              {volume/100}
+            </div>
+          )}
           {/* Volume indicator line */}
           <div
             className="absolute top-0 bottom-0 w-0.5 bg-white shadow-lg transition-all duration-75"

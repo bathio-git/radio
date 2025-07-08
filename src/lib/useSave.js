@@ -68,7 +68,7 @@ export default function useSave({
                     }
                     else {
                         const data = { base64, id }
-                        const json = await postMan('modifyBase64', data);
+                        const json = await postMan('/api/modifyBase64', data);
                     }
                 }
                 handleSavingResult(

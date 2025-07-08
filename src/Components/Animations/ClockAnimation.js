@@ -60,7 +60,6 @@ export default function ClockAnimation({ size = 30, isRecording }) {
             </svg>
             {hover && (
                 <div
-                    className="clock-tooltip"
                     style={{
                         position: "absolute",
                         top: "50%",
