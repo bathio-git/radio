@@ -8,7 +8,7 @@ export default function UserProfile({ edits }) {
 
     return (
         <>
-            <div className="flex" >
+            <div className="flex items-center" >
                 <Image
                     metadata={{
                         type: 'profilePicture',
