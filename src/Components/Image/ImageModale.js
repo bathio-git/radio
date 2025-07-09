@@ -4,7 +4,7 @@ import { imageModalStyles } from "../modalStyles/imageModalStyles";
 import { _data } from "@/Context/Context";
 import Image from "next/image";
 
-export default function ImageModale({ image, classe, edits }) {
+export default function ImageModale({ image, classe, edits,  blur, big }) {
 
     const [showMenu, setMenu] = useState(false)
     const [closeBurger, setClose] = useState(false)
@@ -29,7 +29,12 @@ export default function ImageModale({ image, classe, edits }) {
                             width={65} 
                             height={65} 
                             alt="image"  
-                            className="object-cover w-24 h-24 rounded-full overflow-hidden mr-3"  
+                            className={`
+                                object-cover rounded-full overflow-hidden mr-3 
+                                ${blur ? ' blur-sm' : ''}
+                                ${big?'w-24 h-24':'w-8 h-8'}
+                            `}  
+ 
                         />
                     )
                 }

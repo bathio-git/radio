@@ -10,8 +10,7 @@ export default function Burger() {
 
     const { currentUser, showMenu, setMenu, burgerContent, burgerUser } = useContext(_data)
 
-    const [showRadioList, setRadioList] = useState(true)
-    const [ live, setLive ] = useState(false)
+    const [showRadioList, setRadioList] = useState(true)   
 
     const close = () => {setMenu(false); }
     const open = () => {setMenu(true); setRadioList(true)}
@@ -41,8 +40,6 @@ export default function Burger() {
                         setRadioList={setRadioList}
                         currentUser={currentUser}
                         showRadioList={showRadioList}
-                        live={live}
-                        setLive={setLive}
                     />
                 }
                 {

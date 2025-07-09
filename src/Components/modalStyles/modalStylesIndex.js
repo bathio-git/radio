@@ -4,7 +4,8 @@ const modalStylesIndex = {
         zIndex: `15`,
     },
     content: {
-        position: `asbolute`,
+        position: `fixed`,
+        top: '5rem',   
         border: `none`,
         background: 'rgba(0,0,0,1)',
         overflow: `auto `,

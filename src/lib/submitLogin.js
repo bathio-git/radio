@@ -1,4 +1,4 @@
-export default function submitLogin ({userName, password, setCurrentUser, setRadioList, event}) {
+export default function submitLogin ({userName, password, setCurrentUser, event}) {
 
     event.preventDefault()
 
@@ -26,7 +26,6 @@ export default function submitLogin ({userName, password, setCurrentUser, setRad
             setCurrentUser(x)
             i.innerText= 'welcome ' + data.username
             i.style.display= 'block'
-            setRadioList(true);
             clear()
         }
         else if( data.message === 'User not found' ){

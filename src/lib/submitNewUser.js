@@ -1,6 +1,6 @@
 import validMail from "./validMail"
 
-export default function submitNewUser( event, userName, password, cPassword, email, setCurrentUser, setRadioList ){
+export default function submitNewUser( event, userName, password, cPassword, email, setCurrentUser ){
 
     event.preventDefault()
     const validEmail = validMail(email)
@@ -47,6 +47,10 @@ export default function submitNewUser( event, userName, password, cPassword, ema
                     console.log("okoko")
                     i.innerText = data.message;
                     i.style.display = 'block';
+                    setCurrentUser({
+                        'username': data.username,
+                        'email': data.email,
+                    })
                 }
             })
             .catch((error) => console.error('Error:', error));

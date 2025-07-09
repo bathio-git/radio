@@ -37,7 +37,7 @@ export default function FirstTime({setRadioList}) {
                     <button
                         className="text-[1.5rem]" 
                         type="submit"  
-                        onClick={(event)=> submitNewUser( event, userName, password, cPassword, email, setCurrentUser, setRadioList )}
+                        onClick={(event)=> submitNewUser( event, userName, password, cPassword, email, setCurrentUser )}
                     >
                         {"--> submit"}
                     </button>

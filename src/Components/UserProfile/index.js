@@ -8,12 +8,13 @@ export default function UserProfile({ edits }) {
 
     return (
         <>
-            <div className="mx-[0.75rem] text-[1.5rem] flex items-center " >
+            <div className="flex" >
                 <Image
                     metadata={{
                         type: 'profilePicture',
                         username: currentUser.username,
                     }}
+                    blur={true}
                 />
                 <div className="flex flex-col items-start">
                     <button 

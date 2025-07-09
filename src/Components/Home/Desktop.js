@@ -7,7 +7,7 @@ import About from "../About"
 export default function Desktop({ context, size}) {
     return(
         <>
-            <div className="flex items-center m-1 p-[2rem]">
+            <div className="flex items-center  p-[2rem]">
                 <Burger />
                 <div className="mx-4">
                     { context.sourceAudio 

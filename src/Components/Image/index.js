@@ -4,7 +4,7 @@ import { addImage } from '@/lib/addImage';
 import { useEffect, useState, useContext } from 'react';
 import { _data } from '@/Context/Context.js';
 
-export default function Image({ metadata, classe, edits}) {
+export default function Image({ metadata, classe, edits, blur, big}) {
 
     const { 
         uploadedImage, setUploadedImage,
@@ -45,7 +45,7 @@ export default function Image({ metadata, classe, edits}) {
             />
             {
                 uploadedImage ? (
-                    <ImageModale image={uploadedImage} classe={classe} edits={edits} />
+                    <ImageModale image={uploadedImage} classe={classe} edits={edits} blur={blur} big={big}/>
                 ) : (
                     <Icon edits={edits}/>
                 )

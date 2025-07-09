@@ -52,6 +52,7 @@ export default function UserX({username}) {
                         username: user.username,
                     }}
                     edits={edits}
+                    big={true}
                 />
                 <div className="flex flex-col items-start">
                     <p> 
