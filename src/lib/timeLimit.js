@@ -4,7 +4,6 @@ export default function timeLimit({recorder, setIsRecording, setStartTime}) {
 
         if (recorder.state === "active") recorder.pause();
         
-        
         const messageElement = document.getElementById('message');
         messageElement.style.display = 'block';
         messageElement.innerHTML = "It's been 10min... Recording stopped";
@@ -34,14 +33,20 @@ export default function timeLimit({recorder, setIsRecording, setStartTime}) {
         //make some noise to get the user's attention
         const context = window.audioContext;
         const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        gain.gain.value = 0.29; // Set volume (0.0 to 1.0), try 0.05 for even quieter
+
         oscillator.type = 'sine';
         oscillator.frequency.setValueAtTime(220, context.currentTime);
-        oscillator.connect(context.destination);
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+
         oscillator.start();
         setTimeout(() => {
             oscillator.stop();
+            gain.disconnect();
         }, 500);
-    }, 600000);
+            }, 600000);
 
     return timeoutId;
 }
