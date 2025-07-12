@@ -1,7 +1,6 @@
-export default function playARecord(record, context, isPlaying) {
+export default function playAudioStream(record, context, isPlaying) {
 
     const audio = context.getAudio();
-                            
     //console.log(`${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`)
     if (audio.src === `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`) {
         isPlaying ? audio.pause() : audio.play();

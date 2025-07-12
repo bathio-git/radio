@@ -8,7 +8,7 @@ import ModalContent from "../Connect/ModalContent";
 export default function Stream({ setRadioList, currentUser, showRadioList }) {
 
     const [ live, setLive ] = useState(0)
-    console.log("live value:", live);
+    
     return (
         <nav className={`md:ml-[2rem] zHamburger relative`}>
             {

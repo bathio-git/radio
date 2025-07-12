@@ -3,19 +3,17 @@ import { useEffect, useState, useContext } from "react";
 import PlayButton from "./PlayButton";
 import XSign from "./XSign";
 import { _data } from "@/Context/Context";
+import playAudioStream from "@/lib/playAudioStream";
 
-export default function PlayARecord({ record, onDelete, edits }) {
+export default function PlayARecord({ record, onDelete, edits, nextRecord }) {
 
-    const { getAudio }= useContext(_data);
+    const context = useContext(_data);
     const [isPlaying, setIsPlaying] = useState(false);
 
     const stream = `${process.env.NEXT_PUBLIC_API_URL}/api/stream?id=${record._id}`;
 
-    const audio = getAudio(stream);
-    //console.log('stream', stream)
-    const equal = () => (
-        audio.src  === stream
-    )
+    const audio = context.getAudio(stream);
+    const equal = () => ( audio.src  === stream )
 
     useEffect(() => {
         
@@ -27,15 +25,20 @@ export default function PlayARecord({ record, onDelete, edits }) {
         function handlePause() {
             equal() ? setIsPlaying(false) : null;
         };
-
+        function handleEnded() {
+            equal() ?( 
+                setIsPlaying(false), 
+                playAudioStream(nextRecord, context, isPlaying)
+            ): null; 
+        }
         audio.addEventListener("play", handlePlay);
         audio.addEventListener("pause", handlePause);
-        equal() ? audio.addEventListener("ended", () => setIsPlaying(false)) : null;
+        audio.addEventListener("ended", handleEnded);
 
         return () => {
             audio.removeEventListener("play", handlePlay);
             audio.removeEventListener("pause", handlePause);
-            equal() ? audio.removeEventListener("ended", () => setIsPlaying(false)) : null;
+            audio.removeEventListener("ended", handleEnded);
         };
     }, []);
 

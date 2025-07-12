@@ -1,5 +1,4 @@
 import { useEffect, useState, useContext } from "react";
-import { v4 } from "uuid";
 import PlayARecord from "./PlayARecord";
 import LoadingAnimation from "../Animations/LoadingAnimation";
 import { _data } from "@/Context/Context";
@@ -13,16 +12,16 @@ export default function Recordings({ edits, user }) {
     const [records, setRecords] = useState(null);
 
     const efficientFetch = useFetch({ setRecords,user })
-
     useEffect(() => {
         efficientFetch();
     }, [fetchRecords, user]);
+    
 
     return records === null ? (
         <LoadingAnimation />
     ) : (
         records.map((record, index) =>
-            <div className="mb-12 text-[1rem] m-[1.5rem]" key={v4()}>
+            <div className="mb-12 text-[1rem] m-[1.5rem]" key={record._id}>
                 <PlayARecord 
                     record={record}
                     onDelete={() => onDelete(
@@ -34,6 +33,7 @@ export default function Recordings({ edits, user }) {
                         setAllRecords
                     )}
                     edits={edits}
+                    nextRecord={records[index + 1]}
                 />
                 <br />
             </div>

@@ -9,12 +9,12 @@ import { seekToPosition } from "@/lib/ProgressBar/audioUtils";
 
 export default function ProgressBar( {record}) {
 
-  const context = useContext(_data);
+  const {sourceAudio, sourceNode} = useContext(_data); 
   const canvasRef = useRef(null);
-  
-  const { waveformData, isLoadingWaveform } = useWaveform(context.sourceAudio);
 
-  const { progress, setProgress } = useAudioProgress(context.sourceAudio);
+  const { waveformData, isLoadingWaveform } = useWaveform(sourceAudio, sourceNode);
+
+  const { progress, setProgress } = useAudioProgress(sourceAudio);
 
   const {
         isHovering,hoverPosition, handleMouseMove,handleMouseEnter,handleMouseLeave
@@ -22,7 +22,7 @@ export default function ProgressBar( {record}) {
 
   function handleCanvasClick (event){
 
-        seekToPosition( event, canvasRef, context.sourceAudio, setProgress)
+        seekToPosition( event, canvasRef, sourceAudio, setProgress)
   };
 
   function handleMouseMoveWithRef (event){ handleMouseMove(event, canvasRef) };

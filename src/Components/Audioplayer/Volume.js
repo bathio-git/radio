@@ -1,6 +1,11 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useContext } from 'react';
+import { _data } from '@/Context/Context';
 
 export default function Volume() {
+  
+  const context = useContext(_data);
+  const audio = context.getAudio();
+
   const [volume, setVolume] = useState(50); // Volume from 0 to 125
   const [isDragging, setIsDragging] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -33,25 +38,22 @@ export default function Volume() {
       setVolume(newVolume);
       
       // Update audio element volume
-      const audio = document.getElementById('audioSource');
       if (audio) {
         // Convert volume (0-125) to audio volume (0-1)
         // Standard audio volume is 0-1, but we can allow boost up to 1.25
         const audioVolume = Math.min(newVolume / 100, 1.25);
         audio.volume = Math.min(audioVolume, 1); // Browser limit is 1.0
         
-        // For volumes above 100, you might want to apply additional gain
-        // This would require Web Audio API for actual boost beyond 1.0
-        if (newVolume > 100 && window.AudioContext) {
-          // Optional: Implement Web Audio API gain for boost
-          console.log(`Boost volume requested: ${newVolume}% (${audioVolume})`);
+        
+        if (newVolume > 100 && window.AudioContext) {    
+          // For volumes above 100, you might want to apply additional gain.. This would require Web Audio API for actual boost beyond 1.0
         }
       }
     }
   };
 
   // Convert volume to percentage for positioning
-  const volumePercentage = (volume / 125) * 100;
+  const volumePercentage = (volume / 100) * 100;
 
   React.useEffect(() => {
     if (isDragging) {

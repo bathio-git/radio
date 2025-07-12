@@ -5,7 +5,6 @@ import { _data } from "../../Context/Context"
 export default function  Spectro ({size}) {
 
     const context = useContext(_data)
-    const [ position, setPosition ] = useState({top: 0, left: 0})
     const [ positionStyle, setPositionStyle ] = useState(null)
 
     useEffect(() => {
@@ -64,20 +63,6 @@ export default function  Spectro ({size}) {
 
     }, [context.sourceNode]);
 
-    useEffect(() => {
-
-        function getVolumePos(){
-            
-            if(document.getElementById('volumeUp')){
-                const rect = document.getElementById('volumeUp').getBoundingClientRect();
-                setPosition({top: rect.bottom, left: rect.left})
-            }
-        }
-        getVolumePos();
-        window.addEventListener('resize', getVolumePos);
-        return () => window.removeEventListener('resize', getVolumePos)
-    }, [])
-
     return(
         <div 
             style={{
@@ -93,12 +78,4 @@ export default function  Spectro ({size}) {
                 <canvas ></canvas>
         </div>
     )
-}
-
-function getElementPosition(element) {
-    const rect = element.getBoundingClientRect();
-    return {
-        top: rect.top + window.pageYOffset,
-        left: rect.left + window.pageXOffset
-    };
 }

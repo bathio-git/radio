@@ -3,8 +3,7 @@ import EditNote from "./EditNote";
 import PauseCircleOutlineOutlinedIcon from "@mui/icons-material/PauseCircleOutlineOutlined";
 import PlayCircleFilledWhiteOutlinedIcon from "@mui/icons-material/PlayCircleFilledWhiteOutlined"
 import { _data } from "@/Context/Context";
-import playARecord from "@/lib/playARecord";
-
+import playAudioStream from "@/lib/playAudioStream";
 
 
 export default function PlayButton ({record, isPlaying, edits}){
@@ -18,15 +17,15 @@ export default function PlayButton ({record, isPlaying, edits}){
             { edit === false && 
                 <button
                     className="w-[105%] text-left flex"
-                    onClick={()=>playARecord(record, context, isPlaying)}
+                    onClick={()=>playAudioStream(record, context, isPlaying)}
                 >
-                        {isPlaying ? (
-                            <PauseCircleOutlineOutlinedIcon  />
-                        ) : (
-                            <PlayCircleFilledWhiteOutlinedIcon />
-                        )}
-                        &nbsp;{ title }
-                        &nbsp;&nbsp;{record.duration}
+                    {isPlaying ? (
+                        <PauseCircleOutlineOutlinedIcon  />
+                    ) : (
+                        <PlayCircleFilledWhiteOutlinedIcon />
+                    )}
+                    &nbsp;{ title }
+                    &nbsp;&nbsp;{record.duration}
                 </button>
             }
             {

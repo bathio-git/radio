@@ -1,26 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { _data } from "../../Context/Context";
 
-export function useWaveform(sourceAudio) {
+
+export function useWaveform() {
 
     const [waveformData, setWaveformData] = useState([]);
     const [isLoadingWaveform, setIsLoadingWaveform] = useState(false);
+    const context = useContext(_data);
     
     useEffect(() => {
-        if (!sourceAudio || !sourceAudio.duration) return;
-        generateWaveform(setIsLoadingWaveform, setWaveformData, { sourceAudio });
-    }, [sourceAudio]);
+        if (!context.sourceAudio || !context.sourceAudio.duration) return;
+        generateWaveform(setIsLoadingWaveform, setWaveformData, context);
+    }, [context.sourceAudio]);
         
     return { waveformData, isLoadingWaveform };
 }
     
-async function generateWaveform( setIsLoadingWaveform, setWaveformData ){
+async function generateWaveform( setIsLoadingWaveform, setWaveformData, context ){
     
     setIsLoadingWaveform(true);
-    const audio = document.getElementById("audioSource");
+    const audio = context.getAudio();
     if (audio && audio.src) {
     try {
-        // Create audio context for analysis
-        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      
+        const audioContext = window.audioContext
         const response = await fetch(audio.src);
         const arrayBuffer = await response.arrayBuffer();
         const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
