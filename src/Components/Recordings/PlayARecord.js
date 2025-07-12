@@ -16,40 +16,41 @@ export default function PlayARecord({ record, onDelete, edits, nextRecord }) {
     const equal = () => ( audio.src  === stream )
 
     useEffect(() => {
-        const audio = context.getAudio(stream);
-        const equal = () => audio.src === stream;
-        
-        // Set initial state
-        setIsPlaying(equal() && !audio.paused);
-        
-        function handlePlay() {
-            if (equal()) setIsPlaying(true);
-        }
-        
-        function handlePause() {
-            if (equal()) setIsPlaying(false);
-        };
-        
-        function handleEnded() {
-            if (equal()) {
-            setIsPlaying(false);
-            // Get fresh nextRecord from props at the time of execution
-            if (nextRecord) {
-                playAudioStream(nextRecord, context, false);
-            }
-            }
-        }
+  // Initial setup only
+  const audio = context.getAudio(stream);
+  
+  function handlePlay() {
+    if (audio.src === stream) setIsPlaying(true);
+  }
+  
+  function handlePause() {
+    if (audio.src === stream) setIsPlaying(false);
+  };
+  
+  function handleEnded() {
+    if (audio.src === stream) {
+      setIsPlaying(false);
+      playAudioStream(nextRecord, context, false); // Use false instead of stale isPlaying
+    }
+  }
 
-        audio.addEventListener("play", handlePlay);
-        audio.addEventListener("pause", handlePause);
-        audio.addEventListener("ended", handleEnded);
-        
-        return () => {
-            audio.removeEventListener("play", handlePlay);
-            audio.removeEventListener("pause", handlePause);
-            audio.removeEventListener("ended", handleEnded);
-        };
-    }, [stream, record._id]);
+  audio.addEventListener("play", handlePlay);
+  audio.addEventListener("pause", handlePause);
+  audio.addEventListener("ended", handleEnded);
+  
+  return () => {
+    audio.removeEventListener("play", handlePlay);
+    audio.removeEventListener("pause", handlePause);
+    audio.removeEventListener("ended", handleEnded);
+  };
+}, [stream]); // Only re-run when stream changes
+
+// Separate effect for checking playing state
+useEffect(() => {
+  const audio = context.getAudio(stream);
+  const isCurrentlyPlaying = audio.src === stream && !audio.paused;
+  setIsPlaying(isCurrentlyPlaying);
+}, [stream, context]);
 
     return (
         <>
