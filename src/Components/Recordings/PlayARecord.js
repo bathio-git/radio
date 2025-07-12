@@ -16,31 +16,40 @@ export default function PlayARecord({ record, onDelete, edits, nextRecord }) {
     const equal = () => ( audio.src  === stream )
 
     useEffect(() => {
+        const audio = context.getAudio(stream);
+        const equal = () => audio.src === stream;
         
-        equal() && audio.play ? setIsPlaying(true) : setIsPlaying(false);
-
+        // Set initial state
+        setIsPlaying(equal() && !audio.paused);
+        
         function handlePlay() {
-            equal() ? setIsPlaying(true) : null;
+            if (equal()) setIsPlaying(true);
         }
+        
         function handlePause() {
-            equal() ? setIsPlaying(false) : null;
+            if (equal()) setIsPlaying(false);
         };
+        
         function handleEnded() {
-            equal() ?( 
-                setIsPlaying(false), 
-                playAudioStream(nextRecord, context, isPlaying)
-            ): null; 
+            if (equal()) {
+            setIsPlaying(false);
+            // Get fresh nextRecord from props at the time of execution
+            if (nextRecord) {
+                playAudioStream(nextRecord, context, false);
+            }
+            }
         }
+
         audio.addEventListener("play", handlePlay);
         audio.addEventListener("pause", handlePause);
         audio.addEventListener("ended", handleEnded);
-
+        
         return () => {
             audio.removeEventListener("play", handlePlay);
             audio.removeEventListener("pause", handlePause);
             audio.removeEventListener("ended", handleEnded);
         };
-    }, []);
+    }, [stream, record._id]);
 
     return (
         <>
