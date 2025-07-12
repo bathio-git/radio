@@ -1,5 +1,5 @@
 import RecordInfos from "./RecordInfos";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, useCallback } from "react";
 import PlayButton from "./PlayButton";
 import XSign from "./XSign";
 import { _data } from "@/Context/Context";
@@ -15,42 +15,44 @@ export default function PlayARecord({ record, onDelete, edits, nextRecord }) {
     const audio = context.getAudio(stream);
     const equal = () => ( audio.src  === stream )
 
+    const handleEnded = useCallback(() => {
+        if (audio.src === stream) {
+            setIsPlaying(false);
+            playAudioStream(nextRecord, context, false);
+        }
+    }, [stream, nextRecord, context]);
+
     useEffect(() => {
-  // Initial setup only
-  const audio = context.getAudio(stream);
-  
-  function handlePlay() {
-    if (audio.src === stream) setIsPlaying(true);
-  }
-  
-  function handlePause() {
-    if (audio.src === stream) setIsPlaying(false);
-  };
-  
-  function handleEnded() {
-    if (audio.src === stream) {
-      setIsPlaying(false);
-      playAudioStream(nextRecord, context, false); // Use false instead of stale isPlaying
+    const audio = context.getAudio(stream);
+    
+    // Only add the ended listener with callback
+    audio.addEventListener("ended", handleEnded);
+    
+    return () => {
+        audio.removeEventListener("ended", handleEnded);
+    };
+    }, [handleEnded]);
+
+    // Separate effect for play/pause listeners
+    useEffect(() => {
+    const audio = context.getAudio(stream);
+    
+    function handlePlay() {
+        if (audio.src === stream) setIsPlaying(true);
     }
-  }
+    
+    function handlePause() {
+        if (audio.src === stream) setIsPlaying(false);
+    }
 
-  audio.addEventListener("play", handlePlay);
-  audio.addEventListener("pause", handlePause);
-  audio.addEventListener("ended", handleEnded);
-  
-  return () => {
-    audio.removeEventListener("play", handlePlay);
-    audio.removeEventListener("pause", handlePause);
-    audio.removeEventListener("ended", handleEnded);
-  };
-}, [stream]); // Only re-run when stream changes
-
-// Separate effect for checking playing state
-useEffect(() => {
-  const audio = context.getAudio(stream);
-  const isCurrentlyPlaying = audio.src === stream && !audio.paused;
-  setIsPlaying(isCurrentlyPlaying);
-}, [stream, context]);
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+    
+    return () => {
+        audio.removeEventListener("play", handlePlay);
+        audio.removeEventListener("pause", handlePause);
+    };
+    }, [stream]);
 
     return (
         <>
