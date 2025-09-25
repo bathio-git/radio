@@ -8,10 +8,10 @@
     "start": "next start",
     "lint": "next lint"
   },
-   "engines": {
+  "engines": {
     "node": ">=22.0.0"
   },
-"dependencies": {
+  "dependencies": {
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
@@ -33,7 +33,6 @@
     "react-dom": "18.2.0",
     "react-modal": "^3.16.1",
     "redis": "^4.6.8",
-    "request": "^2.88.2",
     "tailwindcss": "3.3.1",
     "uuid": "^9.0.0"
   }

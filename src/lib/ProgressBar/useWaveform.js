@@ -17,6 +17,21 @@ export function useWaveform() {
 }
     
 async function generateWaveform( setIsLoadingWaveform, setWaveformData, context ){
+
+     function generateFallbackWaveform() {
+
+        const duration = 60; // Default to 60 seconds if unknown
+        const samplesPerSecond = 20;
+        const samples = Math.max(50, Math.min(400, Math.floor(duration * samplesPerSecond)));
+        
+        const fallbackWaveform = Array.from({ length: samples }, () => {
+            // Generate more realistic waveform pattern
+            return Math.random() * 0.3 + 0.1 + Math.sin(Math.random() * 10) * 0.2;
+        });
+        
+        setWaveformData(fallbackWaveform);
+        setIsLoadingWaveform(false);
+    }
     
     setIsLoadingWaveform(true);
     const audio = context.getAudio();
@@ -63,21 +78,6 @@ async function generateWaveform( setIsLoadingWaveform, setWaveformData, context 
     }
     } else {
         // Generate demo waveform
-        generateFallbackWaveform();
+        generateFallbackWaveform()
     }
 };
-
-function generateFallbackWaveform() {
-
-    const duration = 60; // Default to 60 seconds if unknown
-    const samplesPerSecond = 20;
-    const samples = Math.max(50, Math.min(400, Math.floor(duration * samplesPerSecond)));
-    
-    const fallbackWaveform = Array.from({ length: samples }, () => {
-        // Generate more realistic waveform pattern
-        return Math.random() * 0.3 + 0.1 + Math.sin(Math.random() * 10) * 0.2;
-    });
-    
-    setWaveformData(fallbackWaveform);
-    setIsLoadingWaveform(false);
-}

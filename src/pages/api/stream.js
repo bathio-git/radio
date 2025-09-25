@@ -3,6 +3,10 @@ import { ObjectId } from "mongodb";
 
 export default async function stream(req, res) {
   
+  res.setHeader('Access-Control-Allow-Origin', '*'); // ou votre domaine spécifique
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  
   const mixId = req.query.id;
   const client = mongoClient();
 
