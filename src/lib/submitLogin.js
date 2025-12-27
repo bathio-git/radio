@@ -17,7 +17,8 @@ export default function submitLogin ({userName, password, setCurrentUser, event}
     .then((res) => res.json())  
     .then((data) => { 
         if ( data.message === 'Login successful' ){
-            console.log(data)
+            //console.log(data)
+            console.log('login successful')
             let i = document.getElementById('messageL')
             let x = {
                 'username' : data.username,

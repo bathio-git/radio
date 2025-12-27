@@ -41,7 +41,7 @@ export default function submitNewUser( event, userName, password, cPassword, ema
         fetch("api/newUser", requestOptions)
             .then((response) => response.json()) // Extract JSON data from the response
             .then((data) => { // Now you can access the data
-                console.log(data.message);
+                //console.log(data.message);
 
                 if (data.message) {
                     console.log("okoko")

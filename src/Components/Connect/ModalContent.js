@@ -9,7 +9,7 @@ export default function ModalContent() {
      const [signUp, setSignUp] = useState(false)
 
     return (
-        <span className={`flex text-[2.815rem]  borderr p-8 h-[60vh] w-[30rem]`}>
+        <span className="flex text-[2.815rem] borderr p-8 min-h-[60vh] w-[30rem]">
             <Slider setSignUp={setSignUp} signUp={signUp} />
             <div className="mt-[8rem]">
                 {

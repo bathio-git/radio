@@ -42,7 +42,7 @@ export default function FirstTime({setRadioList}) {
                         {"--> submit"}
                     </button>
                 </form>
-                <p id='messageC' className="text-[1.5rem] mt-[1.5rem]" style={{display:'none'}}> 
+                <p id='messageC' className="text-[1.2rem] mt-[1.5rem]" style={{display:'none'}}> 
                 </p>
         </div>
     )
