@@ -154,12 +154,20 @@ const voices = new Radio(
     '18',
 )
 
+const d59b = new Radio(
+    'd59b',
+    'D59B Radio',
+    'https://stream.radiojar.com/gn6dqzhf9mzuv',
+    'https://www.radio.d59b.com/',
+    '19',
+)
 
 const radios = [
     antenas,
     /*balamii,*/
     cashmere,
     ckut,
+    d59b,
     dublab,
     fondation,
     kiosk,
